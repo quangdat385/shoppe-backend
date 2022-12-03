@@ -1,0 +1,54 @@
+29092022	21:57:53	98bf3bf7-13bf-4e8f-a673-12eee5ea1e61	ParallelSaveError: Can't save() the same doc multiple times in parallel. Document: undefined	POST	/auth/register	undefined
+29092022	22:00:18	8186cfa3-e3ef-4eef-ba3f-8d43c20ada0c	ReferenceError: Cannot access 'user' before initialization	POST	/auth/register	undefined
+29092022	22:01:10	be5b268a-5e22-4413-b20b-c842dcaa4db3	ReferenceError: Cannot access 'user' before initialization	POST	/auth/register	undefined
+01102022	10:34:03	aa452db9-e5ee-4247-aeaa-e285fb8b857d	TypeError: res.alert is not a function	POST	/auth/register	undefined
+01102022	21:56:48	859f54b9-4793-477c-a5e5-88a760bb23cc	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	21:57:51	7de19bd9-7892-4291-b9e8-2ab807f47cbf	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	21:58:42	6c116c81-8626-45d1-a73c-7eaf120033c8	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	21:59:23	7120807e-b2ef-4f8e-b52d-81f685b49849	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	22:02:18	762b739a-4ce1-4936-9f0c-942c60fdbcc0	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	22:03:51	b406b4d1-683b-4b5e-a11f-42751089db67	ReferenceError: createToken is not defined	POST	/auth/veryfy_otp	undefined
+01102022	22:05:01	e26b5caa-c1d7-46a6-ab29-c50bd8b973e2	ReferenceError: token is not defined	POST	/auth/veryfy_otp	undefined
+02102022	00:25:47	77407eda-145c-4200-b454-2867a1b577ed	CastError: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"	PUT	/auth/updateUser	undefined
+02102022	00:26:18	20f16e8d-5736-4b7c-96f7-8605d04ce99f	CastError: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"	PUT	/auth/updateUser	undefined
+02102022	00:42:28	4b45c8d7-a9c6-4c4c-8ef3-0b1cec827a6c	TypeError: hashedPwd is not a function	PUT	/auth/updateUser	undefined
+02102022	00:43:36	c65b8074-f982-41fa-a751-ca88d24e5c35	TypeError: hashedPwd is not a function	PUT	/auth/updateUser	undefined
+06102022	12:07:20	74f3d27d-4e03-4dca-8ab5-61dc2416b2da	MongoServerError: E11000 duplicate key error collection: shop_manager.users index: phone_number_1 dup key: { phone_number: null }	POST	/auth/register	undefined
+06102022	22:16:51	c00d03e8-3a16-4e45-bd34-67e31eab9f17	ReferenceError: user_id is not defined	PUT	/auth/update_and_login	undefined
+06102022	22:31:14	e2b0e670-5e4b-4f57-a82e-723c9c17e34c	TypeError: Cannot read properties of null (reading '_id')	PUT	/auth/update_and_login	undefined
+06102022	22:34:12	5c1a2eb6-ee02-46d7-8bde-2958b418b369	TypeError: Cannot read properties of null (reading '_id')	PUT	/auth/update_and_login	undefined
+07102022	21:20:06	aca223fc-41e2-4a8b-906f-4ecfc442af13	TypeError: Cannot read properties of null (reading '_id')	PUT	/auth/update_and_login	undefined
+10102022	22:52:21	15655ca3-2841-42f5-a756-3027bb05c31e	ReferenceError: method_login is not defined	GET	/auth/confirm	undefined
+13102022	22:33:11	90887655-5eb7-428e-98cc-09ac40f74a95	ReferenceError: request is not defined	GET	/auth/refresh	undefined
+13102022	22:34:28	0bd47d13-bc88-44ba-b766-ed94d0470db4	ReferenceError: request is not defined	GET	/auth/refresh	undefined
+13102022	22:34:36	4498a471-8c94-4682-ad36-2ea93ed97f6e	ReferenceError: request is not defined	GET	/auth/refresh	undefined
+13102022	22:34:45	48364585-8243-421f-a417-5f1578328cee	ReferenceError: request is not defined	GET	/auth/refresh	undefined
+13102022	22:37:20	eeedba4a-431f-4633-8308-e8f75083fa9e	ReferenceError: jwt is not defined	GET	/auth/refresh	undefined
+13102022	22:39:51	f8e5959f-e674-4bb4-9b2f-c78ef7bd105f	ReferenceError: jwt is not defined	GET	/auth/refresh	undefined
+13102022	22:41:34	dae8b459-090f-45da-bfe6-7de8c6ae7d3a	ReferenceError: jwt is not defined	GET	/auth/refresh	undefined
+17102022	21:29:53	e41aa4bb-03f4-42ab-9108-06daf0629f98	ValidationError: users validation failed: phone_number: Path `phone_number` (`0384626`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	undefined
+27102022	09:22:36	6d896069-b896-4219-9776-8f2e16cac6dc	CastError: Cast to Number failed for value ":1" (type string) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:24:03	8518af9e-fe39-4920-b42c-62c6d721e458	CastError: Cast to Number failed for value "{ id: ':1' }" (type Object) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:24:24	f2b50c53-a47f-478d-8a9e-75ce3bd02687	CastError: Cast to Number failed for value ":1" (type string) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:25:34	1bbe4570-bf3b-45e1-b665-703a74b71c31	CastError: Cast to Number failed for value ":1" (type string) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:26:08	8b2bd92f-2f1e-49a6-a189-644fa96a263c	CastError: Cast to Number failed for value "NaN" (type number) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:29:03	9677d16e-8f54-4c62-9ff5-c09f0537feff	CastError: Cast to Number failed for value "NaN" (type number) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:33:39	f7c816ff-0494-4fad-b9a9-da7006dd5396	CastError: Cast to Number failed for value ":1" (type string) at path "_id" for model "users"	PUT	/api/auth/:1/update/login	undefined
+27102022	09:44:22	5b7decf4-24df-4cf0-9ac4-e5aff5dcf021	ReferenceError: method_login is not defined	PUT	/api/auth/1/update/login?_method=phone	undefined
+27102022	09:57:45	5c129ade-dc55-48aa-ba98-13092774e24a	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	09:59:38	c314f117-33b9-4471-9a9b-0f2c44d5bcee	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:01:42	b6aae896-1db8-42a7-b2d8-84e1db504039	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:04:35	af415adf-9b2d-49b4-a3aa-cb259287bc6a	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:05:37	df4a8ace-df54-4840-8df6-0672571c7fab	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:07:39	16399adb-8e80-4bd5-bdc2-39245a0b966d	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:07:51	e593c8dd-1453-4409-bffd-8245ee279185	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:09:00	7f1af6df-7054-4397-8625-e4e104e4d0f9	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:09:33	f36ef58a-5d5d-46fd-8b08-2a2addf70c3d	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:11:58	c4855927-36db-42af-ab5e-eb7ab0220ce8	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:12:47	1571708a-07bf-4086-ac47-7ad9e5cf350d	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:13:36	ee198e2b-8d42-4e90-8cd2-11d8146da21e	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:14:27	cafc7620-99b3-40b8-91d4-2a768aed0568	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:15:50	a2db8ff1-a496-4b7f-9a10-977607139691	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:19:11	6cb1a791-86c0-45a7-98c1-9bfd19a17391	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+27102022	10:19:56	fa458dc7-6884-4af4-8340-6aeeaeeaecf1	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
+28102022	21:18:35	023eb88a-21ac-4078-92f0-b37312270fe7	TypeError: Cannot read properties of undefined (reading 'method')	GET	/api/user	undefined
