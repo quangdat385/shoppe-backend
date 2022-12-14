@@ -16,14 +16,17 @@ class AuthController {
             return res.status(400).json({message:'All fields are required'})
         };
         const key=Object.keys(method_login)[0];
+        
         const value=Object.values(method_login)[0];
         const duplicate = Users.findOne({[key]:value});
+        
         duplicate
         .then(duplicate=>{
+            console.log(duplicate);
             if(duplicate) {
                 if (!duplicate.isVerified){
                     
-                    return res.status(401).json({
+                    return res.status(200).json({
                         type: 'duplicate',
                         netx_step:"update",
                         method_login:`${key}`,
@@ -44,7 +47,7 @@ class AuthController {
     
                     const refreshToken=createToken({
                         "user":{
-                            "UserId":duplicate._id
+                            "userId":duplicate._id
                         }
                     },process.env.REFRESH_TOKEN_SECRET,"7d");
                     res.cookie('jwt',refreshToken,{
@@ -70,13 +73,20 @@ class AuthController {
                 
         
             }else {
+                let result 
+                if (key==="phone_number"){
+                    result =key === process.env.ADMIN_PHONE? ["ADMIN","USER"]:["USER"]
+                }else if (key==="email"){
+                    result=key === process.env.MAIL? ["ADMIN","USER"]:["USER"]
+                }else if (key==="google"){
+                    result=key === process.env.GOOGLE? ["ADMIN","USER"]:["USER"]
+                }else {
+                    result=key === process.env.FACE_BOOK? ["ADMIN","USER"]:["USER"]
+                }
             
                 const user=new Users({
                     [key]:value,
-                    roles : key === process.env.ADMIN_PHONE? ["ADMIN","USER"]:["USER"] ||
-                    key === process.env.MAIL? ["ADMIN","USER"]:["USER"]
-                    ||key === process.env.GOOGLE? ["ADMIN","USER"]:["USER"]
-                    ||key === process.env.FACE_BOOK? ["ADMIN","USER"]:["USER"],
+                    roles :result ,
                     user_name:require('crypto').randomBytes(6).toString('hex'),
                     name_shop:`auto_gen_${require('crypto').randomBytes(10).toString('hex')}`
                     
@@ -114,10 +124,11 @@ class AuthController {
     //router PUT auth/:id/update/login?method=key(key get from responsive)
     updateAndLogin(req, res, next){
         (async ()=> {
-            const id=req.params.id;
-            const method_login = req.query.method
             
-            const {password} = req.body;
+            
+            
+            const {id,method,password} = req.body;
+            console.log(method,id,password);
             if(!id||!password) {
                 return res.status(403).json({ message: 'All fields are required'});
             };
@@ -132,18 +143,17 @@ class AuthController {
                 isVerified:true
             })
                 .then((user) => {
-                    console.log(user)
                     const accessToken=createToken({
                         "user":{
-                            "UserId":duplicate._id,
-                            "roles":duplicate.roles,
-                            "user_name":duplicate.user_name
+                            "UserId":user._id,
+                            "roles":user.roles,
+                            "user_name":user.user_name
                         }
                     },process.env.ACCESS_TOKEN_SECRET,"15m");
     
                     const refreshToken=createToken({
                         "user":{
-                            "UserId":user._id
+                            "userId":user._id
                         }
                     },process.env.REFRESH_TOKEN_SECRET,"7d");
                     res.cookie('jwt',refreshToken,{
@@ -152,7 +162,7 @@ class AuthController {
                         sameSite: 'None', //cross-site cookie 
                         maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match r
                     });
-                    res.cookie('method_login',`${method_login}`,{   
+                    res.cookie('method_login',`${method}`,{   
                         httpOnly: true, //accessible only by web server 
                         secure:true, //https
                         sameSite: 'None', //cross-site cookie 
@@ -244,6 +254,7 @@ class AuthController {
             process.env.REFRESH_TOKEN_SECRET,
             async (err, decoded) => {
                 if(err) return res.status(403).json({message:"Forbidden"})
+                console.log(decoded)
                 
                 const foundUser= await Users.findById(decoded.user.userId).exec()
                 
@@ -252,7 +263,7 @@ class AuthController {
                     "user":{
                         "UserId":foundUser._id,
                         "roles":foundUser.roles,
-                        "user_name":foundUser.user_name
+                        "user_name":foundUser.user_name,
                     }
                 },process.env.ACCESS_TOKEN_SECRET,"15m");
                 res.json({accessToken})
@@ -270,11 +281,15 @@ class AuthController {
         res.clearCookie('method_login',{httpOnly:true,sameSite:'None',secure:true})
         res.json({ message:'Cookie cleared'})
     }
-    //router GET auth/confirm
+    //router POST auth/confirm
     confirm(req, res){
         (async ()=> {
             const {phone_number,email}=req.body;
-        
+
+            if(!phone_number ){
+                return res.status(400).json({message:'Missing phone number or email'}) ;
+            }
+
             const confirm_method=phone_number&&{phone_number:phone_number}||email&&{email:email};
             const key= Object.keys(confirm_method)[0];
             const value=Object.values(confirm_method)[0];
@@ -297,9 +312,9 @@ class AuthController {
     //put auth/forgot/password
     forgotPassword(req, res, next){
         (async ()=> {
-            const {id,phone_number,password}=req.body;
-        if(!id||!phone_number||!password) {
-            return res.status(403).json({ message: 'All fields are required'});
+            const {id,method,password}=req.body;
+        if(!id||!method||!password) {
+            return res.status(400).json({ message: 'All fields are required'});
         };
         const hashedPwd=await bcrypt.hash(password,10)
 
@@ -311,36 +326,37 @@ class AuthController {
             password:hashedPwd,
         })
             .then((user) => {
-                const method_login=phone_number?"phone_number":"email"
+                
 
                 const accessToken=createToken({
                     "user":{
                         "UserId":user._id,
-                        "roles":user.roles
+                        "roles":user.roles,
+                        "user_name":user.user_name
                     }
                 },process.env.ACCESS_TOKEN_SECRET,"15m");
-
+    
                 const refreshToken=createToken({
                     "user":{
-                        "UserId":user._id
+                        "userId":user._id,
+                        
                     }
-                },process.env.ACCESS_TOKEN_SECRET,"7d");
+                },process.env.REFRESH_TOKEN_SECRET,"7d");
                 res.cookie('jwt',refreshToken,{
                     httpOnly: true, //accessible only by web server 
-                    secure: false, //https
+                    secure: true, //https
                     sameSite: 'None', //cross-site cookie 
                     maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match r
                 });
-                res.cookie('method_login',`${method_login}`,{   
+                res.cookie('method_login',`${method}`,{   
                     httpOnly: true, //accessible only by web server 
-                    secure:false, //https
+                    secure:true, //https
                     sameSite: 'None', //cross-site cookie 
                     maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match r
                 });
                 res.status(201).json({
                     type: "success",
                     next_step:"views",
-                    method_login:"phone",
                     message: "Login successfully",
                     accessToken
                 });

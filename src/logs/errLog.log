@@ -52,3 +52,30 @@
 27102022	10:19:11	6cb1a791-86c0-45a7-98c1-9bfd19a17391	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
 27102022	10:19:56	fa458dc7-6884-4af4-8340-6aeeaeeaecf1	Error: Cannot set headers after they are sent to the client	POST	/api/auth/logout	undefined
 28102022	21:18:35	023eb88a-21ac-4078-92f0-b37312270fe7	TypeError: Cannot read properties of undefined (reading 'method')	GET	/api/user	undefined
+08122022	21:24:04	e3e64f9e-c000-42df-b800-a8dd1dcc9954	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+08122022	21:24:04	eba4bd6f-afbd-46e4-8638-dfd683ca4b18	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+10122022	15:49:19	4edada57-e460-4cad-a2da-cc2ae5920240	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+10122022	15:49:19	618ca7dd-6d34-4e8e-b4a7-f52e11361ad1	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+10122022	16:21:06	70cacce7-fceb-4dc2-86c2-f534fdf7ccdd	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	undefined
+10122022	18:26:01	bf8cdec8-f799-478b-aefd-0e49dc76a51c	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	18:26:03	5999e7e1-fe2d-4257-ae21-8d2805b14843	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	18:26:15	1b916dec-f146-4292-8ee9-778ffdfa7a3e	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	18:27:01	cff27ce2-a305-473c-8ac0-82a68179a152	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	18:27:20	f8a82ec8-a4c0-4206-ae07-1d35ce0cdbac	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	18:38:25	94de37ef-f8b0-44d0-bc1a-e06aa14107b8	TypeError: console is not a function	POST	/api/auth/register	undefined
+10122022	19:58:25	91a9ec37-3028-4c3f-aa2b-031aa3c3cc9d	ValidationError: users validation failed: phone_number: Path `phone_number` (`dasdasdas`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	19:58:27	fc972839-48fe-48d5-8bd8-e776bb9a5b42	ValidationError: users validation failed: phone_number: Path `phone_number` (`dasdasdas`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	19:58:45	21a32fa4-1883-4ac6-8acb-9d0cfb8ce49c	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+10122022	20:18:05	c32023c7-63c3-436f-8938-a7d95dea5c8e	CastError: Cast to Number failed for value ":id" (type string) at path "_id" for model "users"	PUT	/api/auth/:id/update/login?method=phone_number	undefined
+10122022	20:18:51	3293fdb2-82e3-49f5-a8e7-7a0625c70c42	CastError: Cast to Number failed for value ":id" (type string) at path "_id" for model "users"	PUT	/api/auth/:id/update/login?method=phone_number&id=4	undefined
+11122022	07:32:43	08443ef7-60f8-4cb1-9add-f1b759788ebb	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:32:44	f5a5493e-5faa-472f-b966-7fef2c0cf892	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:32:46	7d8818e3-7033-47e9-b348-b9a670d182fb	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:32:46	dbacfc79-c45b-4ef7-bddb-341e73e6ea07	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:32:54	67c48915-7030-466f-aefb-a69d70d8f579	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:32:55	ef65d751-0bda-4c04-b1f1-f8a544b05b21	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+11122022	07:33:05	39cc9ab7-4678-4bd7-9b5c-1933a6ad16f1	ValidationError: users validation failed: phone_number: Path `phone_number` (`123456`) is shorter than the minimum allowed length (10).	POST	/api/auth/register	http://localhost:3000
+12122022	22:46:56	d25ad206-054e-48e6-acf4-52402466085f	ReferenceError: foundUser is not defined	PUT	/api/auth/forgot/password	http://localhost:3000
+12122022	22:51:11	cf85239f-3a72-4afe-b9b1-61edd07dd74b	ReferenceError: foundUser is not defined	PUT	/api/auth/forgot/password	undefined
+12122022	22:54:22	6f831548-54e4-4fae-a988-1a2ba904e8bf	ReferenceError: phone_number is not defined	PUT	/api/auth/forgot/password	undefined
+12122022	22:54:32	88867774-e4a1-45a7-a52e-f405d53f0ebf	ReferenceError: phone_number is not defined	PUT	/api/auth/forgot/password	undefined

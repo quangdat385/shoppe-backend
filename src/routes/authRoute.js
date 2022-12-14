@@ -8,13 +8,13 @@ router.post('/register',authController.register);
 
 router.post('/login',loginLimiter,authController.login);
 
-router.put('/:id/update/login',authController. updateAndLogin);
+router.put('/update/login',authController. updateAndLogin);
 
 router.get('/refresh',authController.refreshToken);
 
 router.post('/logout',authController.logout);
 
-router.get('/confirm',authController.confirm);
+router.post('/confirm',authController.confirm);
 
 router.put('/forgot/password',authController.forgotPassword);
 
