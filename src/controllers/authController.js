@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 class AuthController {
     //router POST auth/register
     register(req,res,next){
-        const {phone_number,email,google,facebook}=req.body;
+        const {phone_number,email,google,facebook,user_name}=req.body;
         
         const method_login=phone_number&&{phone_number:phone_number}||email&&{email:email}
                             ||google&&{google:google}||facebook&&{facebook:facebook};
@@ -64,7 +64,7 @@ class AuthController {
                     });
                     res.status(201).json({
                         type: "success",
-                        next_step:"veiws",
+                        next_step:"views",
                         message: "Login successfully",
                         accessToken,
                         
@@ -87,7 +87,7 @@ class AuthController {
                 const user=new Users({
                     [key]:value,
                     roles :result ,
-                    user_name:require('crypto').randomBytes(6).toString('hex'),
+                    user_name:user_name?user_name:require('crypto').randomBytes(6).toString('hex'),
                     name_shop:`auto_gen_${require('crypto').randomBytes(10).toString('hex')}`
                     
                 })
@@ -111,7 +111,7 @@ class AuthController {
 
                     })
                     .catch(err=>{
-                        res.status(400).json({ message: 'Invalid user data received' })
+                        res.status(404).json({ message: 'Invalid user data received' })
                         next(err)
                     }) 
                     }
@@ -130,7 +130,7 @@ class AuthController {
             const {id,method,password} = req.body;
             console.log(method,id,password);
             if(!id||!password) {
-                return res.status(403).json({ message: 'All fields are required'});
+                return res.status(401).json({ message: 'All fields are required'});
             };
             const hashedPwd=await bcrypt.hash(password,10)
 
@@ -170,7 +170,7 @@ class AuthController {
                     });
                     res.status(201).json({
                         type: "success",
-                        next_step:"veiws",
+                        next_step:"views",
                         message: "Login successfully",
                         accessToken,
                         
