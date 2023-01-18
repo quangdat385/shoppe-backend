@@ -96,7 +96,7 @@ const updateProduct = async (req, res) => {
     res.json({message:"Product is Updated"})
 }   
 // @desc soft delete product 
-// @route post /product/:id/delete?_method=soft
+// @route post /product/:id/soft/delete
 // @access Private
 const deleteProduct = async (req, res) => {
     const id = req.params.id
@@ -113,7 +113,7 @@ const deleteProduct = async (req, res) => {
     res.status(200).json({message:` Product ${result.title} deleted soft successfully` })
 }
 // @desc  delete product 
-// @route post /product/:id/delete?_method=delete
+// @route post /product/:id/delete
 
 
 // @access Private

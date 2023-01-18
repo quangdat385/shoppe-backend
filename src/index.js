@@ -10,7 +10,7 @@ const route = require('./routes/index');
 const connectDB = require('./config/dbConn');
 const { logger, logEvents } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler')
-const corsOptions = require('./config/allowedOgrigins');
+
 
 
 require('dotenv').config();

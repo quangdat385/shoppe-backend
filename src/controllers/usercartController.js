@@ -85,7 +85,7 @@ const purchase = async (req, res) => {
 const updateCart = async (req, res) => {
     const {id,product,user} = req.body;
 
-    if(!id||product||user){
+    if(!id||!product||!user){
         return res.status(400).json({message:"All fields are required"})
     };
 
