@@ -8,6 +8,8 @@ const bcrypt=require('bcrypt')
 class UsersController {
     // get api/user
     show(req, res,next){
+        
+        
         Users.find({}).select('-password').lean()
         .then(users => {
             if(users.length){
@@ -72,31 +74,34 @@ class UsersController {
             return res.status(400).json({message:"All fields are require"});
         };
             //duplicate 
-        const dup_email= await Users.findOne({email});
-        const dup_phone= await Users.findOne({phone_number});
-        const dup_username= await Users.findOne({user_name});
+
         
-        const dup_nameshop=await Users.findOne({name_shop})
+        const dup_email= email?await Users.findOne({email}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
+        const dup_phone= phone_number?await Users.findOne({phone_number:phone_number}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
+        
+        const dup_username= user_name?await Users.findOne({user_name}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
+        
+        const dup_nameshop=name_shop?await Users.findOne({name_shop}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
         
         
 
         const user = await Users.findById(id).select('-password');
-        if(!user){res
+        if(!user){
             res.status(404).json({message:"Unauthorized"})
         };
         
-        if (dup_phone&&dup_phone._id!==user._id){
+        if (dup_phone&&dup_phone._id.toString()!==id){
             return res.status(401).json({message:"Duplicate phone"})
         };
-        if (dup_email&&dup_email._id!==user._id){
+        if (dup_email&&dup_email._id.toString()!==user._id){
 
 
             return res.status(401).json({message:"Duplicate email"})
         };
-        if (dup_username&&dup_username._id!==user._id){
+        if (dup_username&&dup_username._id.toString()!=user._id){
             return res.status(401).json({message:"Duplicate user name"})
         };
-        if (dup_nameshop&&dup_nameshop._id!==user._id){
+        if (dup_nameshop&&dup_nameshop._id.toString()!=user._id){
             return res.status(401).json({message:"Duplicate name shop"})
         };
         
@@ -113,12 +118,14 @@ class UsersController {
     }
     //patch user/:id/update
     async updateUser(req, res, next){
+        
         const {id,phone_number,email,user_name,full_name,gender,birthday,name_shop,avatar} = req.body;
+        console.log(id,phone_number,req.params)
         if(!id||!phone_number) {
             return res.status(400).json({message:'All fields are required'})
         }
 
-        const dup_email=await Users.findOne({email});
+        const dup_email=email?await Users.findOne({email}):null;
         const dup_phone=await Users.findOne({phone_number});
 
         const user =await Users.findById(id).select('-password');
@@ -149,14 +156,22 @@ class UsersController {
     }
     // delete /:id/soft/delete
     async softDelete(req, res){
+        console.log(req.params.id)
         const user= await Users.findById({_id:req.params.id}).exec();
+        console.log(user)
         if(!user) return res.status(401).json({message:"User not found"});
         
         const product=await Product.findOne({user:req.params.id}).exec();
+        console.log(product)
+
         
         if (product){
             product.user=1;
+            
             await product.save()
+            await user.delete()
+            res.status(200).json({message:"User deleted successfully"})
+        }else {
             await user.delete()
             res.status(200).json({message:"User deleted successfully"})
         }
@@ -169,16 +184,20 @@ class UsersController {
         const product=await Product.findOne({user:req.params.id}).exec();
         if (product){
             product.user=1;
-            await product.save()
-            await user.deleteOne()
-            res.status(200).json({message:"User deleted forever successfully"})
-        }
+            await product.save();
+            await user.deleteOne();
+            res.status(200).json({message:"User deleted forever successfully"});
+        }else{
+            await user.deleteOne();
+            res.status(200).json({message:"User deleted forever successfully"});
+        };
 
     }
     //put /:id/restore
     restore(req, res, next){
         Users.restore({_id:req.params.id})
             .then(()=>res.status(200).json({message:"User is got back successfully"}))
+            .catch(next)
     }
 }
 

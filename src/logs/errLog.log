@@ -1,0 +1,8 @@
+16042023	09:29:56	97c2acbd-ec4f-485a-93a9-c84718866d04	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product	undefined
+16042023	09:31:43	a1d9d9d1-e469-4cad-a809-ed426a908d15	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product	undefined
+18042023	13:50:39	e8d5ddc6-d3de-401f-a15b-66290752464a	TypeError: Cannot read properties of null (reading 'user_name')	GET	/api/product	http://localhost:3000
+18042023	14:32:29	4d7a6416-5854-4beb-9ed8-a256d8b7fc80	TypeError: product.updateMany is not a function	PATCH	/api/product/643cbc1b2010440368a9e7c7/update	undefined
+19042023	08:30:04	a8c03dd6-0402-4038-95d1-7128c62c116a	TypeError: result.save is not a function	PATCH	/api/product/643cbc1b2010440368a9e7c7/update	undefined
+19042023	08:42:23	e874a962-f0a3-43d9-8f33-84516e1db599	TypeError: console is not a function	PATCH	/api/product/643ccd6a2010440368a9e7cf/update	undefined
+19042023	10:06:18	71684d2f-b8e9-4fd1-856c-fc340c16dbbb	SyntaxError: Unexpected token } in JSON at position 1257	POST	/api/product/create	undefined
+19042023	10:59:00	370a4611-3c8c-48fe-a35b-e4777381e327	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product/deleted/product	undefined

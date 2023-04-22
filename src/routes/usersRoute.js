@@ -4,7 +4,7 @@ const verifyJWT=require('../middleware/verifyJWT')
 
 
 const router = express.Router();
-router.use(verifyJWT);
+// router.use(verifyJWT);
 
 router.get('/',usersController.show);
 
@@ -21,7 +21,7 @@ router.patch('/:id/update',usersController.updateUser);
 router.patch('/update',usersController.updateManager);
 
 
-router.put('/:id/soft/delete',usersController.softDelete);
+router.delete('/:id/soft/delete',usersController.softDelete);
 
 
 router.delete('/:id/delete',usersController.delete);
@@ -31,6 +31,7 @@ router.patch('/:id/restore',usersController.restore);
 
 
 router.put('/:id/change/password',usersController.changePassworded);
+
 
 
 module.exports = router;

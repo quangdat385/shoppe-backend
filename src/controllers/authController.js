@@ -6,6 +6,10 @@ const jwt = require('jsonwebtoken')
 
 class AuthController {
     //router POST auth/register
+    // register=async (req,res,next)=>{
+
+    // };
+
     register(req,res,next){
         const {phone_number,email,google,facebook,user_name}=req.body;
         
@@ -75,13 +79,14 @@ class AuthController {
             }else {
                 let result 
                 if (key==="phone_number"){
-                    result =key === process.env.ADMIN_PHONE? ["ADMIN","USER"]:["USER"]
+                    result =value === process.env.ADMIN_PHONE? ["ADMIN","USER"]:["USER"]
                 }else if (key==="email"){
-                    result=key === process.env.MAIL? ["ADMIN","USER"]:["USER"]
+                    result=value === process.env.MAIL? ["ADMIN","USER"]:["USER"]
                 }else if (key==="google"){
-                    result=key === process.env.GOOGLE? ["ADMIN","USER"]:["USER"]
+                    
+                    result=value=== process.env.GOOGLE? ["ADMIN","USER"]:["USER"]
                 }else {
-                    result=key === process.env.FACE_BOOK? ["ADMIN","USER"]:["USER"]
+                    result=value === process.env.FACE_BOOK? ["ADMIN","USER"]:["USER"]
                 }
             
                 const user=new Users({
@@ -120,7 +125,7 @@ class AuthController {
         .catch(next)
         
         
-    }        
+    }       
     //router PUT auth/:id/update/login?method=key(key get from responsive)
     async updateAndLogin(req, res, next){
         const {id,method,password} = req.body;

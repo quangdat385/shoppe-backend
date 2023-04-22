@@ -21,7 +21,7 @@ const UserSchema=new Schema({
     name_shop:{type:String}
 },{
     _id:false,
-    timestamp:true
+    timestamps:true,
 })
 UserSchema.plugin(AutoIncrement)
 UserSchema.plugin(mongooseDelete, {
@@ -30,4 +30,4 @@ UserSchema.plugin(mongooseDelete, {
 
 })
 
-module.exports =mongoose.model("users",UserSchema)
+module.exports =mongoose.model("users",UserSchema);
