@@ -8,7 +8,7 @@ const UserCart=new Schema({
     product:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        ref:"product"
+        ref:"products"
     },
     user:{
         type:Number,

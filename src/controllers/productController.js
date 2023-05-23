@@ -1,5 +1,10 @@
+
+
 const Product = require('../models/Product');
 const Users=require('../models/Users');
+const Rating=require('../models/RatingModel');
+const loadfile = require('../middleware/loadFilemiddleware');
+
 // @desc Get all product 
 // @route GET /product
 // @access Private
@@ -46,24 +51,34 @@ const getDeletedProduct = async (req, res) => {
 const createProduct = async (req, res)  => {
     const {user,title} = req.body;
     //confirm data
-
+    
     if(!user||!title) {
         return res.status(400).json({message:"All fields are required"})
     };
     //check for duplicate
-
+    
     const duplicate =await Product.findOne({title:title}).collation({ locale: 'en', strength: 2 }).lean().exec();
-    console.log(duplicate);
+    
     if(duplicate){
         return res.status(409).json({message:"Product duplicate"})   ;     
     }
 
-    const product = await Product.create({...req.body})
-    if(product) {
-        return res.status(201).json({message:"Product created"}) 
-    }else {
-        return res.status(400).json({message:"Invalid Product data received"})
-    }
+    const product = await Product.create({...req.body});
+    product.save(async(err) => {
+        if(err) return res.status(err.status).json({message:err})
+        console.log(product._id)
+        
+        const rating=new Rating({productId:product._id});
+        
+        rating.save(async(err) => {
+            if(err) return res.status(err.status).json({message:err})
+            product.rateId=rating._id;
+            product.save()
+            return res.status(201).json({message:"Product created"})
+        }
+        );
+        
+    })
 }
 // @desc update product 
 // @route post /product/:id/update
@@ -161,6 +176,45 @@ const productRestore = async (req, res) => {
 
     res.status(200).json({message:"Product is got back successfully"});
 }
+const postImg =async (req, res) => {
+    
+    const files=req.files;
+    if (!files){
+        res.status(400).json({message: 'All field are required'})
+    }
+    
+    const result=files.map(file =>{
+        return [`${req.protocol}://${req.headers.host}/img/${file.filename}`,
+        `./src/public/img/${file.filename}`]
+    })
+    console.log(result)
+    res.status(200).json({data:result})
+}
+const postImgbyUrl =async (req, res) => {
+    
+    const {files} = req.body;
+    
+    if (!files){
+        res.status(400).json({message: 'All field are required'})
+    }
+    const urls= files.map((file) =>{
+        const filename=file.split('/')
+        const fileName=filename[filename.length - 1];
+        loadfile(file,`imgProduct${fileName}`)
+        .then(res=>res).catch((err) =>next(err));
+
+        return [`${req.protocol}://${req.headers.host}/img/imgProduct${fileName}`,
+        `./src/public/img/imgProduct${fileName}`
+    ];
+        
+    })
+    setTimeout(() => {
+        return res.status(200).json({data:urls})
+    },2000 );
+    
+    
+    
+}
 module.exports ={
     getAllProducts,
     getDeletedProduct,
@@ -169,4 +223,6 @@ module.exports ={
     deleteProduct,
     deleteForever,
     productRestore,
+    postImg,
+    postImgbyUrl
 }

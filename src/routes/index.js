@@ -9,6 +9,8 @@ function route(app){
     app.use('/api/product',require('./productsRoute'))
     app.use('/api/user',require('./usersRoute'))
     app.use('/api/auth',require('./authRoute'))
+    app.use('/api/catalo',require('./cataloProductRoute'))
+    app.use('/api/rating',require('./ratingRoute'))
 
     app.use('/', require('./root'));
 

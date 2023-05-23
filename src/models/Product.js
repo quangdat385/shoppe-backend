@@ -6,7 +6,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema=mongoose.Schema;
 
 const ProductSchema=new Schema({
-    user:{type: Number,required:true,default:1,ref:"Users"},
+    user:{type: Number,required:true,default:1,ref:"users"},
     quality:{type:Number,default:0},
     sold:{type:Number,default:0},
     title:{type: String,default:""},
@@ -22,8 +22,12 @@ const ProductSchema=new Schema({
     price:{type:String,default:""},
     place:{type:String,default:""},
     numberical:{type:Number},
-    rate:{type:Number,default:0},
-    likes:{type:Number,default:0}
+    likes:{type:Number,default:0},
+    cataloryId:{ type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"catalories"},
+    rateId:{ type:mongoose.Schema.Types.ObjectId,
+}
     
 },{
     timestamps:true,

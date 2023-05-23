@@ -22,7 +22,7 @@ class AuthController {
         const key=Object.keys(method_login)[0];
         
         const value=Object.values(method_login)[0];
-        const duplicate = Users.findOne({[key]:value});
+        const duplicate = Users.findOne({[key]:value}).exec();
         
         duplicate
         .then(duplicate=>{

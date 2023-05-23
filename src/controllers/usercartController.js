@@ -54,8 +54,8 @@ const purchase = async (req, res) => {
 
 
     if(!product||!user) {
-        return res.status(400).json({message:"All fields are required"})
-    }
+        return res.status(400).json({message:"All fields are required"});
+    };
 
     const dup_user= await Users.findById(user).exec();
     const dup_product = await Product.findById(product).exec();
@@ -65,7 +65,7 @@ const purchase = async (req, res) => {
 
     };
     if(dup_product&&dup_product?.quality<0) {
-        return res.status(409).json({message:"Product sold out"})
+        return res.status(409).json({message:"Product sold out"});
     };
 
     const usercart=await UserCart.create({...req.body});
