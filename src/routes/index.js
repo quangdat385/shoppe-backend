@@ -11,6 +11,7 @@ function route(app){
     app.use('/api/auth',require('./authRoute'))
     app.use('/api/catalo',require('./cataloProductRoute'))
     app.use('/api/rating',require('./ratingRoute'))
+    app.use('/api/product/details',require('./productDetails'))
 
     app.use('/', require('./root'));
 

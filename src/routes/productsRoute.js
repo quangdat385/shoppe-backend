@@ -34,7 +34,7 @@ const imageFilter = function(req, file, cb) {
 const upload = multer({
     storage: storage,
     // fileFilter: imageFilter,
-    limits: { fileSize: 11000000, files: 6 }
+    limits: { fileSize: 11000000, files: 10 }
 });
 
 
@@ -52,6 +52,7 @@ router.post("/post/img/url",productController.postImgbyUrl);
 
 
 router.patch("/:id/update",productController.updateProduct);
+router.patch("/:id/update/likes",productController.likesProduct);
 
 
 router.delete("/:id/delete",productController.deleteForever);
@@ -59,6 +60,8 @@ router.delete("/:id/delete",productController.deleteForever);
 router.delete("/:id/soft/delete",productController.deleteProduct);
 
 router.patch("/:id/restore",productController.productRestore);
+
+router.post("/test",productController.testProduct);
 
 
 module.exports = router;

@@ -82,27 +82,24 @@ class UsersController {
         const dup_username= user_name?await Users.findOne({user_name}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
         
         const dup_nameshop=name_shop?await Users.findOne({name_shop}).collation({ locale: 'en', strength: 2 }).lean().exec():null;
-        
-        
-
+    
         const user = await Users.findById(id).select('-password');
         if(!user){
-            res.status(404).json({message:"Unauthorized"})
+            res.status(404).json({message:"Unauthorized"});
         };
         
         if (dup_phone&&dup_phone._id.toString()!==id){
-            return res.status(401).json({message:"Duplicate phone"})
+            return res.status(401).json({message:"Duplicate phone"});
         };
         if (dup_email&&dup_email._id.toString()!==user._id){
 
-
-            return res.status(401).json({message:"Duplicate email"})
+            return res.status(401).json({message:"Duplicate email"});
         };
         if (dup_username&&dup_username._id.toString()!=user._id){
-            return res.status(401).json({message:"Duplicate user name"})
+            return res.status(401).json({message:"Duplicate user name"});
         };
         if (dup_nameshop&&dup_nameshop._id.toString()!=user._id){
-            return res.status(401).json({message:"Duplicate name shop"})
+            return res.status(401).json({message:"Duplicate name shop"});
         };
         
         
@@ -110,9 +107,9 @@ class UsersController {
         await user.updateOne(req.body);
         const result =await user.save()
         if(result){
-            res.status(200).json({message:"user updated successfully"})
+            res.status(200).json({message:"user updated successfully"});
         }else{
-            res.status(404).json({message:"Error updating"})
+            res.status(404).json({message:"Error updating"});
         }
 
     }
@@ -130,7 +127,7 @@ class UsersController {
 
         const user =await Users.findById(id).select('-password');
 
-        if(!user){res
+        if(!user){
             res.status(404).json({message:"Unauthorized"})
         };
         

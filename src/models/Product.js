@@ -12,21 +12,21 @@ const ProductSchema=new Schema({
     title:{type: String,default:""},
     description:{type: String,default:""},
     img_product:{type: Array},
-    sale_off:{type: String},
-    ship:{type: String,default:""},
-    ship_label:{type: String,default:""},
+    sale_off:{type: Number,default:0},
+    ship:{type: Number,default:1},
+    ship_label:{type: [String],default:[]},
     date_off:{type: Date},
     label:{type: Array,default:["#ShopxuHuong","#ShopDacBiet"]},
     label_id:{type:Number,default:1},
-    discount_stick:{type:String,default:""},
-    price:{type:String,default:""},
-    place:{type:String,default:""},
+    discount_stick:{type:Boolean,default:false},
+    price:{type:Number,},
     numberical:{type:Number},
     likes:{type:Number,default:0},
     cataloryId:{ type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"catalories"},
     rateId:{ type:mongoose.Schema.Types.ObjectId,
+    
 }
     
 },{

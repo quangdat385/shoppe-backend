@@ -1,110 +1,26 @@
-16042023	09:29:56	97c2acbd-ec4f-485a-93a9-c84718866d04	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product	undefined
-16042023	09:31:43	a1d9d9d1-e469-4cad-a809-ed426a908d15	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product	undefined
-18042023	13:50:39	e8d5ddc6-d3de-401f-a15b-66290752464a	TypeError: Cannot read properties of null (reading 'user_name')	GET	/api/product	http://localhost:3000
-18042023	14:32:29	4d7a6416-5854-4beb-9ed8-a256d8b7fc80	TypeError: product.updateMany is not a function	PATCH	/api/product/643cbc1b2010440368a9e7c7/update	undefined
-19042023	08:30:04	a8c03dd6-0402-4038-95d1-7128c62c116a	TypeError: result.save is not a function	PATCH	/api/product/643cbc1b2010440368a9e7c7/update	undefined
-19042023	08:42:23	e874a962-f0a3-43d9-8f33-84516e1db599	TypeError: console is not a function	PATCH	/api/product/643ccd6a2010440368a9e7cf/update	undefined
-19042023	10:06:18	71684d2f-b8e9-4fd1-856c-fc340c16dbbb	SyntaxError: Unexpected token } in JSON at position 1257	POST	/api/product/create	undefined
-19042023	10:59:00	370a4611-3c8c-48fe-a35b-e4777381e327	TypeError: Users.findById(...).lean.exec is not a function	GET	/api/product/deleted/product	undefined
-14052023	10:13:22	55e3cf64-14f4-4713-be93-93b0e3057f82	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:13:23	fbd6b8f6-5a4f-4b2e-918f-4f2d9c5ded45	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:13:31	b3487390-290b-4abc-8662-028eb3e3bd74	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:21	73e60e40-f51f-47f0-94f5-19e1c005bc07	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:22	c7733c63-b959-40da-95b9-3b61eb13902b	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:22	03d65392-ec9e-4df1-9680-1f753da47174	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:22	f751b48a-a48f-4791-8760-148fd799e4f8	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:22	f2ee56db-51c2-4355-ad74-95addceec48f	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-14052023	10:14:51	5143f811-f42c-4396-bb88-73c0b6de2314	Error: Not allowed by CORS	POST	/upload	http://localhost:5000
-15052023	08:56:03	c34a1332-b9e1-4e98-945a-91612c6ea168	TypeError: Catalory.create is not a function	POST	/api/catalo/post	undefined
-15052023	08:58:16	a57895fc-b23d-4108-ae9c-f7e59fffc883	TypeError: Catalory.create is not a function	POST	/api/catalo/post	undefined
-15052023	08:58:57	7d2d87fe-57af-4203-bb5d-17c2686ba09e	TypeError: Catalory.create is not a function	POST	/api/catalo/post	undefined
-15052023	09:01:12	763bea53-1aba-41a7-9171-cbbac5942e15	TypeError: Catalory.create is not a function	POST	/api/catalo/post	undefined
-15052023	09:02:25	55fc6358-c806-486e-b438-4d4c5c400299	ReferenceError: category is not defined	POST	/api/catalo/post	undefined
-15052023	10:11:23	58738e73-16f0-403d-9d82-090020625b0e	TypeError: Cannot convert undefined or null to object	GET	/api/catalo	undefined
-15052023	11:48:15	fa969f5e-02d9-40e6-92f1-e9cba54ba74a	MulterError: Unexpected field	POST	/api/product/post/img?file	undefined
-15052023	11:51:13	d314a202-498b-4fa2-b98a-525abeaac3db	MulterError: Unexpected field	POST	/api/product/post/img?file	undefined
-15052023	11:55:31	f32f58d4-961e-4db6-8fff-9506273639ac	MulterError: Unexpected field	POST	/api/product/post/img	undefined
-15052023	12:01:08	89599bf9-af97-4080-b25a-ae25e11e659a	Error: Only image files are allowed!	POST	/api/product/post/img	undefined
-15052023	12:03:03	f51f0c2a-d71a-478a-b391-8a1a5e8f2fe7	Error: Only image files are allowed!	POST	/api/product/post/img	undefined
-15052023	12:03:44	51e4d09f-1b30-4691-bf05-ccfc998e8b33	Error: Only image files are allowed!	POST	/api/product/post/img	undefined
-15052023	12:04:15	3c568e2f-adf7-4348-8988-622977d27842	Error: Only image files are allowed!	POST	/api/product/post/img	undefined
-15052023	12:05:23	4c540c8d-e223-46f4-bc2d-276ca228a785	Error: ENOENT: no such file or directory, open 'D:\shoppe-backend\src\public\img\files1684127123173'	POST	/api/product/post/img	undefined
-15052023	13:05:05	0b98d618-cf7f-4da1-b4c9-546a0101dc74	ReferenceError: files is not defined	POST	/api/product/post/img	undefined
-16052023	09:41:09	80dbd03c-79cf-4578-b6bb-d73177a1f6d2	ReferenceError: tring is not defined	POST	/api/product/post/img	undefined
-16052023	09:55:03	b24fa7ee-95e5-4cd6-9818-12f0e5187e0e	ReferenceError: FormData is not defined	POST	/api/product/post/img	undefined
-16052023	09:57:04	45a559b0-02a7-484d-860f-d8a48a900b15	ReferenceError: FormData is not defined	POST	/api/product/post/img	undefined
-16052023	09:57:43	28e0a9c9-9bcb-48f2-97bf-d0f01e11041e	ReferenceError: fetch is not defined	POST	/api/product/post/img	undefined
-16052023	09:58:40	6378720f-1fb9-4723-9ea4-f7a00f04722f	ReferenceError: fetch is not defined	POST	/api/product/post/img	undefined
-16052023	09:59:15	dcb053e2-ff99-47cb-961e-034f37c408ee	ReferenceError: fetch is not defined	POST	/api/product/post/img	undefined
-16052023	09:59:39	464d83cf-b8af-4416-b80c-14519bdfa74e	ReferenceError: fetch is not defined	POST	/api/product/post/img	undefined
-16052023	10:00:24	3234d6fd-7cdc-4935-bd3f-98c0c08b330d	TypeError: fetch is not a function	POST	/api/product/post/img	undefined
-16052023	10:07:35	9cab6a29-4252-4088-b223-a660c99072f1	ReferenceError: newForm is not defined	POST	/api/product/post/img	undefined
-16052023	10:08:37	69377020-9dae-44eb-ad6e-80bce4c52532	ReferenceError: FormData is not defined	POST	/api/product/post/img	undefined
-16052023	10:12:13	0e0d8f4b-0cc7-4295-85d6-e206149eb74e	ReferenceError: temp is not defined	POST	/api/product/post/img	undefined
-16052023	10:13:30	13404275-6189-4d46-8f04-f519eafa319c	ReferenceError: FormData is not defined	POST	/api/product/post/img	undefined
-16052023	10:22:59	0a842825-96b2-4b1f-80ff-c6dfa4d0d666	TypeError: Cannot read properties of undefined (reading 'catch')	POST	/api/product/post/img	undefined
-16052023	10:25:02	d3f1c7f2-75a3-4488-aac1-fd7351cec158	TypeError: Cannot read properties of undefined (reading 'catch')	POST	/api/product/post/img	undefined
-16052023	10:26:17	63fad339-287a-4fb6-861d-65d6651f355d	TypeError: Cannot read properties of undefined (reading 'catch')	POST	/api/product/post/img	undefined
-16052023	10:32:17	415eee98-1d87-492e-bb6f-0d919bcf23ba	ReferenceError: fetch is not defined	POST	/api/product/post/img	undefined
-16052023	11:55:47	309743ef-4378-4fc0-95f3-7f894ed4e841	ReferenceError: b is not defined	POST	/api/product/post/img	undefined
-17052023	08:09:56	93d6372b-9c4a-49a5-9d44-30750912c598	undefined: undefined	POST	/api/product/post/img	undefined
-17052023	08:12:31	0445556c-862d-4a11-8881-6d810d267170	Error: Cannot set headers after they are sent to the client	POST	/api/product/post/img	undefined
-17052023	08:19:39	ea59e69e-cb51-4920-a4e0-97a588a72144	ReferenceError: images is not defined	POST	/api/product/post/img	undefined
-17052023	08:23:28	2569a114-b1c8-43ea-b26e-b38bf3173f0d	ReferenceError: images is not defined	POST	/api/product/post/img	undefined
-17052023	08:24:08	c6b426b1-5397-45dd-ba6d-ab324b12e1ec	ReferenceError: images is not defined	POST	/api/product/post/img	undefined
-17052023	08:27:21	a51506fc-3d7a-41a7-91e0-e33b279a2cb1	ReferenceError: images is not defined	POST	/api/product/post/img	undefined
-17052023	08:27:57	8ec12178-d829-4540-aa2c-ae81da6c015f	ReferenceError: images is not defined	POST	/api/product/post/img	undefined
-17052023	08:42:39	98143c4a-261f-4df9-9cdb-d4664e1481b3	ReferenceError: images is not defined	POST	/api/product/post/img/url	undefined
-17052023	09:29:31	3dd7496c-9c0b-4dfc-80eb-f5456bae84f6	TypeError: loadFilemiddleware(...).resolve is not a function	POST	/api/product/post/img/url	undefined
-17052023	09:44:52	f3bd86cf-18fb-4a77-ab53-36d5b799b7b7	ReferenceError: err is not defined	POST	/api/product/post/img/url	undefined
-17052023	09:54:41	5cebefb7-f5a0-4ae5-bd70-bb1022428e5c	Error: Cannot set headers after they are sent to the client	POST	/api/product/post/img/url	undefined
-17052023	09:56:10	ad81e83d-9ef2-46ed-acb1-6da7ded83975	Error: Cannot set headers after they are sent to the client	POST	/api/product/post/img/url	undefined
-17052023	10:03:17	bdb20caa-696d-45b6-af30-5b8b977b775f	ReferenceError: images is not defined	POST	/api/product/post/img/url	undefined
-17052023	10:13:28	651f4850-2984-4eae-8849-9e8aaad639eb	TypeError: loadFilemiddleware(...).then(...).them is not a function	POST	/api/product/post/img/url	undefined
-17052023	10:27:22	544b9a56-2554-4591-8cb9-64c26b998f84	TypeError: Property description must be an object: i	POST	/api/product/post/img/url	undefined
-17052023	10:28:44	993caf89-063d-42d2-a329-35e6baf6c04b	TypeError: Property description must be an object: imgProduct1684294095571.jfif	POST	/api/product/post/img/url	undefined
-17052023	10:31:59	93ae1aaf-222b-41e8-931d-0b8f8435fc78	Error: getaddrinfo ENOTFOUND down-vn.img.susercontent.com	POST	/api/product/post/img/url	undefined
-17052023	10:33:18	d7cc5aa0-8eb5-454d-b14b-56169cab8d54	Error: getaddrinfo ENOTFOUND down-vn.img.susercontent.com	POST	/api/product/post/img/url	undefined
-18052023	09:48:19	72681cb0-ef9b-49f8-aab4-b5613326a6a3	ReferenceError: images is not defined	POST	/api/product/post/img	http://localhost:3000
-19052023	08:32:41	e10a1a2b-90da-4a19-aea4-0814a93830d5	ReferenceError: Cannot access 'fileName' before initialization	POST	/api/product/post/img/url	undefined
-20052023	08:21:36	7c3ab7cd-5829-4daf-8f6e-84a21706c6af	TypeError: cata.save is not a function	PATCH	/api/catalo/update	undefined
-20052023	08:26:59	a0001d80-771f-4e79-9822-8832c5c610e0	TypeError: cata.save is not a function	PATCH	/api/catalo/update	undefined
-20052023	08:27:35	a7720a11-d799-4c36-b57f-45302b708fc0	TypeError: cata.save is not a function	PATCH	/api/catalo/update	undefined
-20052023	08:34:41	500997a2-216e-4d9e-98e9-eed113378c57	RangeError: Invalid status code: 40	PATCH	/api/catalo/update/64619b585b5d4b06dc6f21ee	undefined
-20052023	08:35:52	b4296083-d2a6-4c72-9e1a-7930757ff6dc	RangeError: Invalid status code: 40	PATCH	/api/catalo/update/64619b585b5d4b06dc6f21ee	undefined
-20052023	08:36:22	85726d9c-5e5e-4960-b508-1f851e9f3f59	RangeError: Invalid status code: 40	PATCH	/api/catalo/update/64619b585b5d4b06dc6f21ee	undefined
-20052023	08:38:54	98d8d3a3-2d6f-4bd6-bae4-7c9a0671e203	RangeError: Invalid status code: 40	PATCH	/api/catalo/update/64619b585b5d4b06dc6f21ee	undefined
-20052023	08:46:58	a6c71b00-51e8-4054-9ec9-7fa8cf5b0bad	RangeError: Invalid status code: 40	PATCH	/api/catalo/64619b585b5d4b06dc6f21ee/update	undefined
-20052023	08:47:46	8c124922-b82d-49e2-8dae-55b6f498bf56	ReferenceError: constid is not defined	PATCH	/api/catalo/64619b585b5d4b06dc6f21ee/update	undefined
-20052023	09:03:25	9ec9cbf6-835d-45fc-8603-92f4b5b7829b	TypeError: Cannot read properties of null (reading 'delete')	DELETE	/api/catalo/646827aafd0d7af2b6d801cc/softdelete	undefined
-21052023	08:39:25	0e9060c9-6ddb-438b-a518-ce176aa06286	TypeError: Found non-callable @@iterator	POST	/api/rating/post	undefined
-21052023	08:45:02	79aa7532-ca64-462a-b307-c88f2ee9641e	MongooseError: `Model.create()` cannot run without a model as `this`. Make sure you are not calling `new Model.create()`	POST	/api/rating/post	undefined
-21052023	08:45:46	c270aaae-4a6a-4cba-b35c-941e75e2e825	ValidationError: rating validation failed: producID: Path `producID` is required.	POST	/api/rating/post	undefined
-21052023	08:47:28	3b3dd3e1-3427-44cd-97d4-427e991e2864	MongooseError: document must have an _id before saving	POST	/api/rating/post	undefined
-21052023	08:48:27	e5df27e7-8c14-4afc-982b-e169c3b20778	MongooseError: document must have an _id before saving	POST	/api/rating/post	undefined
-21052023	08:52:50	5e399798-2181-48a1-bf11-105016358865	MongooseError: document must have an _id before saving	POST	/api/rating/post	undefined
-21052023	09:10:43	e61e2f86-ce2c-43a8-86c5-065b3938785b	TypeError: Cannot read properties of undefined (reading 'userId')	PATCH	/api/rating/update	undefined
-21052023	09:11:36	b1930ca7-8bae-411b-ae0b-c75c38dcb342	TypeError: Cannot read properties of undefined (reading 'userId')	PATCH	/api/rating/update	undefined
-21052023	09:43:32	393157c6-0e80-4fd5-ad24-f427c1cec40a	MongooseError: Query was already executed: rating.updateOne({ _id: new ObjectId("646979ab25a4c3d07f4b42...	PATCH	/api/rating/update	undefined
-21052023	09:45:53	355fa6d0-9e0b-4fde-9e39-e9ab6f09bbcf	MongooseError: Query was already executed: rating.updateOne({ _id: new ObjectId("646979ab25a4c3d07f4b42...	PATCH	/api/rating/update	undefined
-21052023	09:48:15	282aaef5-856b-463e-8fc9-1f06496f1251	TypeError: result.then is not a function	PATCH	/api/rating/update	undefined
-21052023	10:40:43	844a5336-2871-41b5-8273-fdd82a178a52	Error: Cannot set headers after they are sent to the client	PATCH	/api/rating/update	undefined
-21052023	10:42:09	b6428488-69ca-4e8e-97a7-7b783f428270	CastError: Cast to Number failed for value "643cbc1b2010440368a9e7c7" (type string) at path "_id" for model "users"	PATCH	/api/rating/update	undefined
-21052023	10:42:47	a07464c9-0cef-49f0-9ab9-c0bf9d981fee	Error: Cannot set headers after they are sent to the client	PATCH	/api/rating/update	undefined
-21052023	10:43:05	12bc58d5-f3df-4a93-9328-ff5100df1ff8	Error: Cannot set headers after they are sent to the client	PATCH	/api/rating/update	undefined
-21052023	10:44:33	8c3488b5-7007-4771-8b28-bc8227719e98	Error: Cannot set headers after they are sent to the client	PATCH	/api/rating/update	undefined
-22052023	09:59:31	0146711a-147f-4582-a3c6-0a919423493e	TypeError: Rating.create(...).exec is not a function	POST	/api/rating/post	undefined
-22052023	10:10:28	d000d10a-cc93-4be6-80d7-10f286ebb19a	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError", cataloryId: Path `cataloryId` is required.	POST	/api/product/create	undefined
-22052023	10:13:08	000b2348-9202-41b8-86e2-b4fb896fa497	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError", cataloryId: Path `cataloryId` is required.	POST	/api/product/create	undefined
-22052023	10:13:24	bb9ebd08-2a93-4e2b-86ce-ff8373cfb80e	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:13:54	c7e8ae88-1a5f-4719-9b05-1c540453eee8	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:21:23	d640cdf3-5775-4905-9c18-e049a2ae8be5	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:22:27	e32bbc46-5f87-4fe6-8485-8cbbff126750	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:23:45	20b6bf88-4d77-420e-8300-fff8b8cf0f84	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:43:57	de906ca7-0ba5-44af-a12f-ce8469dde56c	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:47:28	6a8b5c85-fcc2-418c-8909-828b02212214	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:47:59	df7e1083-5ae1-4f30-8277-fab8b69c7588	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:50:05	bf27ea20-f98e-40c8-bd41-e1609602471c	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:51:15	1c1db36e-87b4-49b1-9825-b2dafb449b96	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:54:26	3a246839-fe7e-434f-9d53-2070126f38b9	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
-22052023	10:55:08	96d3c0e6-3a18-47ec-93dd-1b0eef73aaa3	ValidationError: product validation failed: rateId: Cast to ObjectId failed for value "" (type string) at path "rateId" because of "BSONTypeError"	POST	/api/product/create	undefined
+25052023	09:30:02	7b6e36eb-577c-4166-a324-dc4f780e90b4	ReferenceError: rest is not defined	PATCH	/api/product/details/646ec5396f3a4de6eb167f8d/update	undefined
+25052023	09:30:41	8e37dadb-de3f-4b43-9f00-3053b34f6298	TypeError: result.updateOne(...).save is not a function	PATCH	/api/product/details/646ec5396f3a4de6eb167f8d/update	undefined
+25052023	09:33:50	acad4d6e-d04b-4c90-9306-ade7b9d4365c	TypeError: result.save is not a function	PATCH	/api/product/details/646ec5396f3a4de6eb167f8d/update	undefined
+25052023	09:34:48	c371bf60-6330-4beb-97fc-413d848d0105	TypeError: result.save is not a function	PATCH	/api/product/details/646ec5396f3a4de6eb167f8d/update	undefined
+25052023	12:01:42	3d50ed9a-48f9-4e95-b206-e917fbf53ec3	TypeError: productWithUser[0].keys is not a function	GET	/api/product	undefined
+25052023	12:12:18	fdac1677-7438-4ce7-ae5e-3190d7a1c6b2	TypeError: abc.keys is not a function or its return value is not iterable	GET	/api/product	undefined
+25052023	12:14:39	363c4740-da0d-4897-aeb3-fee89a3e4d69	TypeError: productWithUser[0].keys is not a function or its return value is not iterable	GET	/api/product	undefined
+28052023	15:05:54	2926bd76-a829-4c38-b6be-35a6fa65c1e6	ReferenceError: Cannot access 'details' before initialization	POST	/api/product/details	undefined
+29052023	10:48:58	c3b20ede-351e-4046-81f8-404d1335f8b8	ReferenceError: User is not defined	PATCH	/api/product/647416266dc14c07a6c1b50c/update/likes	undefined
+30052023	08:23:36	7890abe7-2673-4993-a16d-f522bef227bd	ValidationError: productdetails validation failed: warehouse: Path `warehouse` is required.	POST	/api/product/details	undefined
+30052023	10:16:48	0fb7552b-6443-4ce8-a857-87f6cbcb59cc	CastError: Cast to ObjectId failed for value "{ _id: '6475678544af6d9994a0087' }" (type Object) at path "_id" for model "product"	POST	/api/product/details	undefined
+31052023	08:12:10	dc3ae731-92f4-46f3-8e24-9b78a1db1fbe	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	08:13:36	fe8deed4-519f-43f8-b2b2-51a45f4b8e6c	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	08:53:27	ac383c41-bdd0-4234-a7bb-a212136a200e	SyntaxError: Unexpected token , in JSON at position 2227	POST	/api/product/create	undefined
+31052023	09:18:39	50a85b0d-f4e7-4756-aa5f-6615125c79b4	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	09:19:47	0dd5d01c-ffdc-4873-bb43-382b63f089a9	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	09:20:42	2a571956-785b-4493-b05c-ab1c7e718326	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	09:45:58	7d140514-dc8d-4552-8617-a455b7dd1d25	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	10:01:52	720dd7b7-30a1-4404-a564-39c3b5aebbd0	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	10:15:17	49be5277-23af-43b9-be59-ef2db57f69a8	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	10:21:11	ffece8a5-e030-4e60-86f2-e4339a8e0030	ValidationError: product validation failed: date_off: Cast to date failed for value "23-08-2023" (type string) at path "date_off"	POST	/api/product/create	undefined
+31052023	10:37:10	718675a6-f96e-4a33-870d-11944d6afdd8	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	11:11:02	060fc599-38c3-433d-ba2d-2fbf896c6eda	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+31052023	11:41:08	85ffad2d-7ee6-4092-947f-466ab746eb02	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+03062023	14:38:00	ef6f8730-5597-4d73-8a1a-b582fb54480a	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined
+03062023	14:53:10	5f362b11-48ea-4e24-a534-845bdcf115d9	Error: Cannot set headers after they are sent to the client	POST	/api/product/test	undefined

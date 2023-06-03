@@ -1,9 +1,13 @@
+const fs = require('fs')
+const fsPromises = require('fs').promises
+const path = require('path');
 
 
 const Product = require('../models/Product');
 const Users=require('../models/Users');
 const Rating=require('../models/RatingModel');
 const loadfile = require('../middleware/loadFilemiddleware');
+const DetailProducts=require('../models/ProductDetails')
 
 // @desc Get all product 
 // @route GET /product
@@ -22,6 +26,18 @@ const getAllProducts = async (req, res) => {
         return {...product,user_name:user.user_name}
 
     }))
+    
+    // try {
+    //     if (!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
+    //         await fsPromises.mkdir(path.join(__dirname, '..', 'logs'))
+    //     }
+    //     await fsPromises.appendFile(path.join(__dirname, '..', 'logs', "product.json"),JSON.stringify(productWithUser))
+    // } catch (err) {
+    //     console.log(err)
+    // }
+
+
+
     res.status(200).json(productWithUser)
 }
 // @desc Get soft deleted product
@@ -121,7 +137,51 @@ const updateProduct = async (req, res) => {
         return res.status(400).json({message:"Invalid Product data received"})
     }
     
-}   
+}  
+const likesProduct= async (req, res) => {
+    const {id,userId,likes}= req.body;
+
+
+    if(!id||!userId||!likes) {
+        return res.status(400).json({message: 'All fields are required'});
+    };
+
+    const product = await Product.findById(id).exec();
+    const users = await Users.findById(userId).exec();
+    
+    if(!product||!users) {
+        return res.status(400).json({message: 'Not Found Product Or User'});
+    };
+
+    product.save(async err => {
+        if(err) {
+            return res.status(500).json({message: err.message})
+        };
+        let isUpdateUser=users.like_product.indexOf(product._id)
+        if (isUpdateUser===-1) {
+            if(likes>0){
+                users.like_product.push(product._id);
+                await users.save();
+                product.likes+=1;
+                product.save();
+            }
+            
+        }else {
+            if(likes<0){
+                let user_like= users.like_product;
+                user_like.splice(isUpdateUser,1);
+                users.like_product=user_like;
+                await users.save()
+                product.likes-=1;
+                product.save();
+            }
+        }
+
+        return res.status(200).json({message: 'update likes successfully'})
+    })
+
+
+} 
 // @desc soft delete product 
 // @route post /product/:id/soft/delete
 // @access Private
@@ -154,10 +214,21 @@ const deleteForever = async (req, res) => {
     if(!product) {
         res.status(400).json({message: 'Product not found'});
     };
-
+    const rating=await Rating.findOne({productId: product.id}).exec();
+    const details=await DetailProducts.findOne({productId: product.id}).exec()
+    if(rating){
+        await rating.deleteOne()
+    }
+    if(details){
+        await details.deleteOne()
+    }
+    
     const result = await product.deleteOne();
 
     res.status(200).json({message:` Product ${result.title} deleted  successfully` });
+    
+
+
 }
 // @desc  restore product 
 // @route post /product/:id/restore
@@ -184,7 +255,7 @@ const postImg =async (req, res) => {
     }
     
     const result=files.map(file =>{
-        return [`${req.protocol}://${req.headers.host}/img/${file.filename}`,
+        return [`${file.filename}`,
         `./src/public/img/${file.filename}`]
     })
     console.log(result)
@@ -203,17 +274,32 @@ const postImgbyUrl =async (req, res) => {
         loadfile(file,`imgProduct${fileName}`)
         .then(res=>res).catch((err) =>next(err));
 
-        return [`${req.protocol}://${req.headers.host}/img/imgProduct${fileName}`,
+        return [`imgProduct${fileName}`,
         `./src/public/img/imgProduct${fileName}`
     ];
         
     })
     setTimeout(() => {
         return res.status(200).json({data:urls})
-    },2000 );
+    },1000 );
     
     
     
+}
+const testProduct = async(req, res) => {
+    const {title} = req.body;
+    console.log(title);
+
+    if(!title) {
+        res.status(404).json({message:"All field are required"});
+    }
+    const duplicate = await Product.findOne({title: title}).exec();
+    
+
+    if(!duplicate) {
+        res.status(200).json({message:"pass"})
+    };
+    res.status(404).json({message:"Don't Pass"})
 }
 module.exports ={
     getAllProducts,
@@ -224,5 +310,7 @@ module.exports ={
     deleteForever,
     productRestore,
     postImg,
-    postImgbyUrl
+    postImgbyUrl,
+    likesProduct,
+    testProduct,
 }

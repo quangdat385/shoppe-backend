@@ -17,6 +17,7 @@ const RatingSchema=new Schema({
 },{
     timestamps:true,
     
+    
 });
 
 

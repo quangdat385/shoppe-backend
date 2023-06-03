@@ -1,7 +1,8 @@
 const Users=require('../models/Users');
 const Product=require('../models/Product');
 const Rating=require('../models/RatingModel');
-const countRading= require('../middleware/counRating')
+const countRading= require('../middleware/counRating');
+
 
 
 class RatingController {
@@ -23,7 +24,7 @@ class RatingController {
         if (!productId) {
             return res.status(400).json({message:"All field are required"});
         }
-        const product = await Product.findById(productId).exec();
+        const product = await Product.findById(productId,"name length").exec();
         if(!product) {
             res.status(404).json({message:"Not Found Product"});
         }
@@ -36,18 +37,18 @@ class RatingController {
     }
     async update(req, res){
         const {productId,userId,rate}=req.body;
-        
-        if (!productId&&!userId&&!rate){
+        if (!productId||!userId||!rate){
             return res.status(400).json({message:"All field are required"});
-        }
-        const product = await Product.findById(productId).exec();
-        const user = await Users.findById({_id:Number(userId)}).exec();
+
+        };
         
-        
-        if(!product&&!user) {
-            res.status(404).json({message:"Not Found Product"});
+        const product = await Product.findOneWithDeleted({_id:productId}).exec();
+        const user = await Users.findWithDeleted({_id:Number(userId)}).exec();
+        console.log(product,user)
+        if(!product||!user){
+            return res.status(404).json({message: "Not Found User Or Product"});
         }
-        const result = Rating.findOne({productId: productId}).exec();
+        const result = Rating.findOne({productId:product._id}).exec();
         
         if(!result){
             res.status(404).json({message:"Not Found Rating Record"});
@@ -77,7 +78,7 @@ class RatingController {
             
             result.save();
             res.status(200).json({message:"update successfully"});
-        }).catch(err => {res.status(404).json({message:err})});
+        }).catch(()=> {res.status(404).json({message:"Don't update successfully"})});
         
     }
     delete(req, res, next){
