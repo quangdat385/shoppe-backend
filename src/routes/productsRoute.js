@@ -43,6 +43,7 @@ const upload = multer({
 
 
 router.get("/",productController.getAllProducts);
+router.get("/search",productController.getSearchProducts);
 router.get("/deleted/product",productController.getDeletedProduct);
 
 

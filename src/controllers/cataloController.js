@@ -1,18 +1,34 @@
 const Users=require('../models/Users');
 const Catalory=require('../models/CataLoProduct');
+const Products=require('../models/Product');
 
 class CataloProduct {
     async getCataloProduct(req,res,next) {
         
         console.log(req.headers.host,req.protocol);
             
-        Catalory.find({}).lean()
-        .then(catelory => {
-            if(catelory.length){
+        Catalory.find({})
+        .then(async (catalory) => {
+            if(catalory.length){
+                await catalory.map(async (cata)=>{
+                    const products= await Products.find({
+                        cataloryId:cata._id}).exec()
+                    
+                    let listProduct = [];
+                    if(products?.length){
+                        products.forEach(product => {
+                            listProduct.push(product._id)
+                    })
+                    cata.listProduct=listProduct;
+                    cata.save()
+                } 
                 
-                res.status(200).json(catelory)
+                })
+
+                res.status(200).json(catalory);
+                
             }else{
-                res.status(400).json({message:"users not found"})
+                res.status(400).json({message:"catalory not found"})
             }
             
         })

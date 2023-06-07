@@ -7,38 +7,51 @@ const Product = require('../models/Product');
 const Users=require('../models/Users');
 const Rating=require('../models/RatingModel');
 const loadfile = require('../middleware/loadFilemiddleware');
-const DetailProducts=require('../models/ProductDetails')
+const DetailProducts=require('../models/ProductDetails');
+const Catalory=require('../models/CataLoProduct');
 
 // @desc Get all product 
 // @route GET /product
 // @access Private
 
-const getAllProducts = async (req, res) => {
-    const products=await  Product.find().lean();
+const getSearchProducts = async (req, res,next) => {
+    console.log(req.query)
+    const products=await  Product.find({});
+    if(!products.length){
+        return res.status(404).json({message:"Product not found"})
+    };
+    const count=products.length;
+    const page=req.query.page;
+    const perPage=10;
+    const productPage=products.slice(perPage*page,(perPage*page+perPage));
+    let totalPages=Math.ceil(count/perPage)
+    
 
+    res.status(200).json({data:productPage,totalPages})
+}
+const getAllProducts = async (req, res,next) => {
+    
+    const products=await  Product.find({}).lean().exec();
+
+    
 
     if(!products.length){
         return res.status(404).json({message:"Product not found"})
     };
-
     const productWithUser= await Promise.all(products.map(async(product) => {
-        const user = await Users.findById(product.user).lean().exec()
-        return {...product,user_name:user.user_name}
+        const user = await Users.findById(product.user).lean().exec();
+        const cata= await Catalory.findById(product.cataloryId).lean().exec();
+        return {...product,
+            user_name:user.user_name,
+            type_of_product:cata?.type_of_product,
+            details:cata?.details
+        }
 
     }))
-    
-    // try {
-    //     if (!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
-    //         await fsPromises.mkdir(path.join(__dirname, '..', 'logs'))
-    //     }
-    //     await fsPromises.appendFile(path.join(__dirname, '..', 'logs', "product.json"),JSON.stringify(productWithUser))
-    // } catch (err) {
-    //     console.log(err)
-    // }
-
-
-
+    console.log(productWithUser)
     res.status(200).json(productWithUser)
+    
+    
 }
 // @desc Get soft deleted product
 // @route GET /product
@@ -303,6 +316,7 @@ const testProduct = async(req, res) => {
 }
 module.exports ={
     getAllProducts,
+    getSearchProducts,
     getDeletedProduct,
     createProduct,
     updateProduct,
