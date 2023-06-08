@@ -32,6 +32,9 @@ const ProductSchema=new Schema({
 },{
     timestamps:true,
 });
+
+
+
 ProductSchema.plugin(AutoIncrement, 
     {id: 'numberical_product', inc_field: 'numberical',start_seq:1 }
 );

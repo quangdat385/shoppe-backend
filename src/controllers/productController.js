@@ -9,6 +9,7 @@ const Rating=require('../models/RatingModel');
 const loadfile = require('../middleware/loadFilemiddleware');
 const DetailProducts=require('../models/ProductDetails');
 const Catalory=require('../models/CataLoProduct');
+const collectionProduct= require('../middleware/colectionProduct');
 
 // @desc Get all product 
 // @route GET /product
@@ -16,14 +17,43 @@ const Catalory=require('../models/CataLoProduct');
 
 const getSearchProducts = async (req, res,next) => {
     console.log(req.query)
-    const products=await  Product.find({});
+    const {page,collection,price,order}=req.query;
+    let sort
+    if(order!=="Phổ Biến"){
+        if(order=="Mới Nhất"){
+            sort="createdAt"
+        }else{
+            sort="sold"
+        }
+    }
+    
+    const products=await  Product.find({}).sort({[sort]:-1}).lean().exec();
     if(!products.length){
         return res.status(404).json({message:"Product not found"})
     };
-    const count=products.length;
-    const page=req.query.page;
+    const productWithUser= await Promise.all(products.map(async(product) => {
+        const user = await Users.findById(product.user).lean().exec();
+        const cata= await Catalory.findById(product.cataloryId).lean().exec();
+        return {...product,
+            user_name:user.user_name,
+            type_of_product:cata?.type_of_product,
+            details:cata?.details
+        }
+
+    }))
+    const result =collectionProduct(collection,productWithUser)
+    
+    
+    const count=result.length;
+    if(price!=="none"){
+        if(price==="increase"){
+            result.sort((a,b) =>a.price - b.price)
+        }else{
+            result.sort((a,b) =>b.price - a.price)
+        }
+    }
     const perPage=10;
-    const productPage=products.slice(perPage*page,(perPage*page+perPage));
+    const productPage=result.slice(perPage*page,(perPage*page+perPage));
     let totalPages=Math.ceil(count/perPage)
     
 
@@ -48,7 +78,7 @@ const getAllProducts = async (req, res,next) => {
         }
 
     }))
-    console.log(productWithUser)
+    
     res.status(200).json(productWithUser)
     
     
