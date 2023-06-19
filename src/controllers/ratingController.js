@@ -70,12 +70,15 @@ class RatingController {
             
             const data =countRading(rates);
             const {one,two,three,four,five} = data;
+
+            const rating=result.totalStar===0?0:((one*50+two*50+three*100+four*400+five*500)/(result.totalStar*500))*5;
+
             result.oneStar=one;
             result.twoStar=two;
             result.threeStar=three;
             result.fourStar=four;
             result.fiveStar=five;
-            
+            result.rating=rating;
             result.save();
             res.status(200).json({message:"update successfully"});
         }).catch(()=> {res.status(404).json({message:"Don't update successfully"})});

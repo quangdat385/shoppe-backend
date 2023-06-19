@@ -14,6 +14,7 @@ const RatingSchema=new Schema({
     twoStar:{type: Number,default:0,min:0},
     oneStar:{type: Number,default:0,min:0},
     totalStar:{type: Number,default:0,min:0},
+    rating:{type: Number,default:0,min:0,max:5},
 },{
     timestamps:true,
     

@@ -14,14 +14,54 @@ const collectionProduct= require('../middleware/colectionProduct');
 // @desc Get all product 
 // @route GET /product
 // @access Private
+const searchProduct = async (req, res) => {
+    const {keyword,details} = req.query;
+    console.log(req.query);
+    const rgx = (pattern) => new RegExp(`.*${pattern}.*`);
+    
+    
+    const   products=details==="false"? await  Product.find({title:{ $regex: rgx(keyword) , $options: 'si' }}).lean().exec():
+            await Product.find({}).lean().exec();
+    
+    
+    
+    
+    if(!products.length) {
+        res.status(400).json({message: 'Product not found'});
 
-const getSearchProducts = async (req, res,next) => {
-    console.log(req.query)
+    }
+
+    console.log(products.length);
+    const productWithUser= await Promise.all(products?.map(async(product) => {
+        const user = await Users.findById(product.user).lean().exec();
+        const cata= await Catalory.findById(product.cataloryId).lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
+        return {...product,
+            user_name:user.user_name,
+            type_of_product:cata?.type_of_product,
+            details:cata?.details,
+            rating:rate.rating?rate.rating:0
+        }
+
+    }))
+    
+    if(details==="false") {
+        return res.status(200).json({products:productWithUser,history:{keyword,details}})
+    }else {
+        const result =productWithUser.filter(product =>{
+            return product.details===keyword
+        })
+        return res.status(200).json({products:result,history:{keyword,details}})
+    }
+    
+}
+const getSearchProducts = async (req, res) => {
     const {page,collection,price,order}=req.query;
+    console.log(req.query)
     let sort
     if(order!=="Phổ Biến"){
         if(order=="Mới Nhất"){
-            sort="createdAt"
+            sort="numberical"
         }else{
             sort="sold"
         }
@@ -34,10 +74,12 @@ const getSearchProducts = async (req, res,next) => {
     const productWithUser= await Promise.all(products.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
         return {...product,
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
-            details:cata?.details
+            details:cata?.details,
+            rating:rate.rating?rate.rating:0
         }
 
     }))
@@ -47,9 +89,9 @@ const getSearchProducts = async (req, res,next) => {
     const count=result.length;
     if(price!=="none"){
         if(price==="increase"){
-            result.sort((a,b) =>a.price - b.price)
+            result.sort((a,b) =>a.price*(1-a.sale_off) - b.price*(1-b.sale_off))
         }else{
-            result.sort((a,b) =>b.price - a.price)
+            result.sort((a,b) =>b.price*(1-b.sale_off) - a.price*(1-a.sale_off))
         }
     }
     const perPage=10;
@@ -71,10 +113,12 @@ const getAllProducts = async (req, res,next) => {
     const productWithUser= await Promise.all(products.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
         return {...product,
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
-            details:cata?.details
+            details:cata?.details,
+            rating:rate.rating?rate.rating:0
         }
 
     }))
@@ -347,6 +391,7 @@ const testProduct = async(req, res) => {
 module.exports ={
     getAllProducts,
     getSearchProducts,
+    searchProduct,
     getDeletedProduct,
     createProduct,
     updateProduct,

@@ -104,3 +104,67 @@
 08062023	11:08:48	ea409423-19dc-4972-820e-338bac1a3fff	TypeError: Cannot read properties of undefined (reading 'length')	GET	/api/product/_search?page=0&colection=undefined&price=increase&order=B%C3%A1n%20Ch%E1%BA%A1y	http://localhost:3000
 08062023	11:09:13	1c5a9c1c-eedf-499b-bef2-935802ab0287	TypeError: Cannot read properties of undefined (reading 'length')	GET	/api/product/_search?page=0&colection=undefined&price=increase&order=B%C3%A1n%20Ch%E1%BA%A1y	http://localhost:3000
 08062023	11:09:18	888057ea-5949-4d65-bc52-ca8bc386b062	TypeError: Cannot read properties of undefined (reading 'length')	GET	/api/product/_search?page=0&colection=undefined&price=increase&order=B%C3%A1n%20Ch%E1%BA%A1y	http://localhost:3000
+09062023	09:23:53	445dc5d8-d764-4b2c-9d7c-da43e5f59abd	Error: Invalid select: select only takes 1 argument	GET	/api/product/_search?page=1&collection=1&price=none&order=Ph%E1%BB%95%20Bi%E1%BA%BFn	http://localhost:3000
+09062023	09:24:54	cac72e36-c7ff-439d-a944-b9c9700a85b8	Error: Invalid select: select only takes 1 argument	GET	/api/product/_search?page=1&collection=1&price=none&order=Ph%E1%BB%95%20Bi%E1%BA%BFn	http://localhost:3000
+13062023	11:39:29	574383eb-d92d-478d-805c-85e69ff829dc	ReferenceError: successfully is not defined	GET	/api/product/hot/search?keyword=123	undefined
+13062023	11:53:36	df9df38e-6c47-4916-8bc4-d3425b1f281c	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=ao%20croptop	http://localhost:3000
+13062023	12:25:24	0ab33758-b544-428f-961c-aba9a150b5bf	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%A1o%20crop%20top	http://localhost:3000
+13062023	12:25:28	45657ced-4314-435c-a221-ada498ea22ab	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%A1o%20crop%20top	http://localhost:3000
+13062023	12:25:35	1a84d956-f55d-46f5-a749-b59ce4c4eef9	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%A1o%20crop%20top	http://localhost:3000
+14062023	11:51:21	41898d93-878a-4a42-ac1a-d2fa0328ec35	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=zvcxv	http://localhost:3000
+14062023	11:51:26	2ed1fd35-ac1d-4f97-8272-83ed17d32afa	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:28	78342df2-aa62-4c69-9a03-2ebd4f09a794	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:28	39e4333c-0362-4131-b9fd-d54290b3fcbb	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:28	160dbf06-9f32-4322-8b0f-415821983636	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:29	c0eb146b-d283-42fc-afe2-b90dc3acae40	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:29	7a45ac10-fe0d-4a58-bcff-c06e8b802076	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=cxzvv	http://localhost:3000
+14062023	11:51:40	8ebb3de4-56a0-4316-84ed-d47fb1bea328	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+14062023	11:51:42	a2d09631-8a7f-47f6-873f-fd50bfd5ab4d	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+14062023	11:51:42	fcf1036c-bca6-49e4-9524-a1ffdee394c8	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+14062023	11:51:43	aa3edc23-a7e0-4fa4-ad63-40f78cd43326	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+14062023	11:51:43	df46a22a-6d1a-4112-b8ae-9a28a7df8bed	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+14062023	11:51:43	cd048037-0a44-4edc-a46c-96ac73944190	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=jjj	http://localhost:3000
+15062023	12:02:51	b2782b9d-87ba-40bc-865e-eb634d3188ee	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C4%90%E1%BB%93%20L%E1%BA%BB	http://localhost:3000
+15062023	12:03:02	ec67d84c-cc97-477c-800e-df1e8d6db513	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%81o%20Croptop%20C%C3%B3%20Tay	http://localhost:3000
+15062023	12:05:22	f7daca0d-0c1b-4859-aa50-2d1f2bf50e86	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%81o%20Croptop%20C%C3%B3%20Tay	http://localhost:3000
+15062023	12:17:16	f7f63f4b-31cb-4e25-87d7-2337565ba623	ReferenceError: keyword is not defined	GET	/api/product/hot/search?keyword=[object%20Object]	http://localhost:3000
+16062023	07:33:36	105c9db9-e1a8-467d-a3d7-6a7abad9cc2c	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:34:20	97915f17-c4d5-4a0e-a514-d9b22deec949	ReferenceError: details is not defined	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:35:35	79904478-263f-4cab-84d4-4bfaf49360fb	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:35:48	bd9dea35-9c2f-4b2a-9d12-6ff624341e6f	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:37:54	c2fe003c-e69a-48b5-bfa7-e5ab9f629c2e	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:38:02	02903ae9-8fd2-4e75-9df8-f6b674b31b91	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:38:02	b7117ef7-fecc-485f-9cc1-44c015f95732	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:38:03	0948aebf-282d-4b60-a86b-e790fc5b8084	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:38:06	9f8e23e1-44fc-45b4-9ff5-0b9a028bceb0	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:39:41	05b0c13b-9c3a-4c8b-8a6d-66c533aeb744	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:49:37	a05c8f0e-a246-45e6-ae5b-16c741e05d26	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:49:40	dedca3a6-516c-45e5-a446-66559e082b83	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	07:57:56	73acdc1e-b28e-4c59-9651-fe11e84f0c69	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:01:31	64eca728-456b-4622-b3ac-e4bb5d704ec8	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:04:00	be85e450-efd5-4afe-bfe6-d9dcee4e6dfa	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:04:06	f159426f-4dc5-498a-b2f2-d0ca01f48d43	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:04:33	98fd8ee0-8257-4f1e-9ed4-dc8045e6b5fa	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:07:03	550f7d91-8f96-49d1-afc4-d4cc740cecb4	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:10:36	658bcb69-c8d4-4fca-b6c3-4dd106f4be52	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=undefined&details=undefined	http://localhost:3000
+16062023	08:12:12	9293d2dc-1a0d-4dcc-933b-4e44fe209e55	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:15:47	e5f4d268-6424-481f-b82b-5c4dc4b7dc26	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:19:59	99778a88-1109-48d0-99cc-e5b8eb51d762	ReferenceError: detail is not defined	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:20:20	8b8f9c1b-8e80-400f-944a-b2a24ea206fc	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:21:16	777708a4-d8bd-4ee8-8a03-2aa0a2244e9f	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:23:36	ea649574-21eb-4f57-b9b6-d2a885ac0872	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:24:30	884698e8-7825-447c-8420-c40fbd527065	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:25:44	7f36e43e-4eca-4a1d-b2e6-28a6318d466f	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:26:52	814606b4-7e42-42fc-b588-3d2964d70c7d	Error: Cannot set headers after they are sent to the client	POST	/api/product/hot/search	http://localhost:3000
+16062023	08:55:21	de64127a-53ac-4899-ad4e-d2c4401bbb48	ReferenceError: details is not defined	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	08:57:18	84e3b20b-6b27-4ad7-9e0b-aa4ff6c8f8cc	ReferenceError: keywork is not defined	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	08:57:59	4725fbba-fb4f-4b3d-bc19-09d326e12c4b	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    --- property 'details' closes the circle	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	09:10:59	a9d5081a-a4a6-4dca-a37b-774290452455	TypeError: products.map is not a function	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	09:11:33	10d434a3-f04f-49de-9299-64356ee7037e	TypeError: products?.map is not a function	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	09:12:18	2b153a88-c287-4833-9177-c141f7d6f518	TypeError: products?.map is not a function	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	09:12:59	6a0aa9c4-44c3-4d5c-90d6-2572219b5183	TypeError: products?.map is not a function	GET	/api/product/hot/search?keyword=%C3%A1o%20croptop&details=false	undefined
+16062023	09:31:22	a8e7a2ab-3962-4c0a-82b7-3c0ea621aa08	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?%C3%A1o=keyword&details=false	http://localhost:3000
+16062023	09:33:59	a5e44976-236a-43f1-a78e-2a180297d165	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?%C3%A1o=keyword&details=false	http://localhost:3000
+16062023	10:13:33	3796543a-c5b4-45b1-83ee-c7210a3910ad	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%81o%20Croptop%20C%C3%B3%20Tay&details=false	http://localhost:3000
