@@ -11,6 +11,7 @@ const ProductSchema=new Schema({
     sold:{type:Number,default:0},
     title:{type: String,default:""},
     description:{type: String,default:""},
+    deliver:{type:Array,default:["Hỏa Tốc","Nhanh","Tiết Kiệm"]},
     img_product:{type: Array},
     sale_off:{type: Number,default:0},
     ship:{type: Number,default:1},

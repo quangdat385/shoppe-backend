@@ -55,6 +55,7 @@ router.post("/post/img/url",productController.postImgbyUrl);
 
 router.patch("/:id/update",productController.updateProduct);
 router.patch("/:id/update/likes",productController.likesProduct);
+router.patch("/update",productController.updateMany);
 
 
 router.delete("/:id/delete",productController.deleteForever);

@@ -10,10 +10,10 @@ function collectionProduct(colect,products) {
         })
         return result
     }else if(Number(colect)===2){
-        result=products.filter(product=>{
-        return product.sold===0
+        result=products.sort((a,b)=>{
+            return b.numberical-a.numberical;
         })
-        return result
+        return result.slice(0,10)
     }else if(Number(colect)===3){
         result=products.filter(product=>{
         return product.details==="Áo Croptop Ba Lỗ"

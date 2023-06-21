@@ -8,16 +8,17 @@ class CataloProduct {
         console.log(req.headers.host,req.protocol);
             
         Catalory.find({})
-        .then(async (catalory) => {
+        .then((catalory) => {
             if(catalory.length){
-                await catalory.map(async (cata)=>{
+                catalory.map(async (cata)=>{
                     const products= await Products.find({
                         cataloryId:cata._id}).exec()
                     
                     let listProduct = [];
+                    
                     if(products?.length){
                         products.forEach(product => {
-                            listProduct.push(product._id)
+                            listProduct.push(product._id);
                     })
                     cata.listProduct=listProduct;
                     cata.save()

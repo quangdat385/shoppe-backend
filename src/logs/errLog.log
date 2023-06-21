@@ -168,3 +168,7 @@
 16062023	09:31:22	a8e7a2ab-3962-4c0a-82b7-3c0ea621aa08	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?%C3%A1o=keyword&details=false	http://localhost:3000
 16062023	09:33:59	a5e44976-236a-43f1-a78e-2a180297d165	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?%C3%A1o=keyword&details=false	http://localhost:3000
 16062023	10:13:33	3796543a-c5b4-45b1-83ee-c7210a3910ad	Error: Cannot set headers after they are sent to the client	GET	/api/product/hot/search?keyword=%C3%81o%20Croptop%20C%C3%B3%20Tay&details=false	http://localhost:3000
+20062023	07:36:51	c8531d36-7ba6-4b37-bec2-29a65aaabace	CastError: Cast to Boolean failed for value "{ '$ne': true }" (type Object) at path "deleted" because of "CastError"	PATCH	/api/product/update	undefined
+20062023	07:38:11	138aeb93-12de-4f13-a4ec-375f3b282310	CastError: Cast to [string] failed for value "[ { deliver: [ 'Hỏa Tốc', 'Nhanh', 'Tiết Kiệm' ] } ]" (type string) at path "deliver.0" because of "CastError"	PATCH	/api/product/update	undefined
+20062023	07:39:43	de7d7afc-3ff6-494b-83ff-0c5b1c2a4e92	CastError: Cast to [string] failed for value "[ { deliver: [ 'Hỏa Tốc', 'Nhanh', 'Tiết Kiệm' ] } ]" (type string) at path "deliver.0" because of "CastError"	PATCH	/api/product/update	undefined
+20062023	07:40:59	1ed9a3d7-b5d9-4cf0-a527-37f92db2646f	CastError: Cast to Boolean failed for value "{ '$ne': true }" (type Object) at path "deleted" because of "CastError"	PATCH	/api/product/update	undefined

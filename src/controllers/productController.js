@@ -388,6 +388,17 @@ const testProduct = async(req, res) => {
     };
     res.status(404).json({message:"Don't Pass"})
 }
+const updateMany=async (req, res) => {
+    const {deliver}=req.body;
+
+    const results=await Product.updateManyWithDeleted({deliver:deliver});
+    if(!results) {
+        res.status(404).json({message:"Updated Not Successfully"})
+    }
+    res.status(200).send({message:"Updated Successfully"})
+    
+
+}
 module.exports ={
     getAllProducts,
     getSearchProducts,
@@ -402,4 +413,5 @@ module.exports ={
     postImgbyUrl,
     likesProduct,
     testProduct,
+    updateMany
 }
