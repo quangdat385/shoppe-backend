@@ -7,6 +7,7 @@ const Schema=mongoose.Schema;
 
 const CataloProduct=new Schema({
     user:{type: Number,required:true,ref:"users"},
+    user_update:{type: Number,ref:"users"},
     type_of_product:{type:String,required:true,},
     details:{type:String,default:""},
     listProduct:{type:[mongoose.Schema.Types.ObjectId],default:[]},

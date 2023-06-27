@@ -4,6 +4,8 @@ const Schema=mongoose.Schema;
 
 const ProductDetails=new Schema({
     productId:{type: mongoose.Schema.Types.ObjectId,required:true,ref:"products"},
+    user:{type: Number,required:true,default:1,ref:"users"},
+    user_update:{type: Number,ref:"users"},
     color:{type: [String],default:[]},
     size:{type: [String],default:[]},
     deliver_fee:{type: Number,required:true},

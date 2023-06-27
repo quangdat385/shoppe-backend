@@ -7,10 +7,10 @@ const Schema=mongoose.Schema;
 
 const ProductSchema=new Schema({
     user:{type: Number,required:true,default:1,ref:"users"},
+    user_update:{type: Number,ref:"users"},
     quality:{type:Number,default:0},
     sold:{type:Number,default:0},
     title:{type: String,default:""},
-    description:{type: String,default:""},
     deliver:{type:Array,default:["Hỏa Tốc","Nhanh","Tiết Kiệm"]},
     img_product:{type: Array},
     sale_off:{type: Number,default:0},
@@ -26,11 +26,12 @@ const ProductSchema=new Schema({
     cataloryId:{ type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"catalories"},
-    rateId:{ type:mongoose.Schema.Types.ObjectId,
+    rateId:{ type:mongoose.Schema.Types.ObjectId,required:true,ref:"ratings"},
+    whole_sale:{ type:Boolean,default:false}
     
 }
     
-},{
+,{
     timestamps:true,
 });
 

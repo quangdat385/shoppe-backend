@@ -10,28 +10,11 @@ class CataloProduct {
         Catalory.find({})
         .then((catalory) => {
             if(catalory.length){
-                catalory.map(async (cata)=>{
-                    const products= await Products.find({
-                        cataloryId:cata._id}).exec()
-                    
-                    let listProduct = [];
-                    
-                    if(products?.length){
-                        products.forEach(product => {
-                            listProduct.push(product._id);
-                    })
-                    cata.listProduct=listProduct;
-                    cata.save()
-                } 
-                
-                })
-
                 res.status(200).json(catalory);
                 
             }else{
                 res.status(400).json({message:"catalory not found"})
             }
-            
         })
         .catch(next)
     }
@@ -53,7 +36,7 @@ class CataloProduct {
     }
     async createCataloProduct(req,res) {
         const {user,type_of_product}=req.body;
-        if(!user,!type_of_product){
+        if(!user||!type_of_product){
             return res.status(400).json({message:"All field are required"});
         };
         console.log(user,type_of_product);
@@ -71,15 +54,15 @@ class CataloProduct {
         }
     }
     async updateCataloProduct (req, res) {
-        
+        const {user,...rest} = req.body
         const id=req.params.id;
         
-        if(!id) return res.status(40).json({message:"All field are required"});
-
-        const cata=Catalory.findByIdAndUpdate(id,req.body).exec();
+        if(!id||!user) return res.status(400).json({message:"All field are required"});
+        const find_user= await Users.findById(user).lean().exec()
+        const cata= await Catalory.findByIdAndUpdate(id,{...rest,user_update:user}).exec();
+        if(!find_user) return res.status(404).json({message:"User Not Found"})
         
-        
-        if(!cata) return res.status(400).json({message:"Don't update catalo product"});
+        if(!cata) return res.status(404).json({message:"Don't update catalo product"});
         res.status(201).json({message:"Update successfully"});
     }
     async deleteCataloProduct (req, res) {

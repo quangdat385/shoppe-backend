@@ -12,6 +12,8 @@ function route(app){
     app.use('/api/catalo',require('./cataloProductRoute'))
     app.use('/api/rating',require('./ratingRoute'))
     app.use('/api/product/details',require('./productDetails'))
+    app.use('/api/delivery',require('./deliverRoute'))
+    app.use('/api/vourcher',require('./vourcherRoute'))
 
     app.use('/', require('./root'));
 

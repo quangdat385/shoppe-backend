@@ -2,26 +2,49 @@ const fs = require('fs')
 const fsPromises = require('fs').promises
 const path = require('path');
 
-
+const Delivery = require('../models/deliveryAgency')
 const Product = require('../models/Product');
 const Users=require('../models/Users');
 const Rating=require('../models/RatingModel');
 const loadfile = require('../middleware/loadFilemiddleware');
 const DetailProducts=require('../models/ProductDetails');
 const Catalory=require('../models/CataLoProduct');
+const Vourcher=require('../models/Vourcher');
+
+
+
 const collectionProduct= require('../middleware/colectionProduct');
 
+
 // @desc Get all product 
-// @route GET /product
+// @route GET /product/hot/search
 // @access Private
 const searchProduct = async (req, res) => {
     const {keyword,details} = req.query;
-    console.log(req.query);
+    
+    
+    const {more, menu,place,deliver,rangePrice,voucher}=req.body;
+    console.log(req.body)
+    const {popular,price}=more;
+    let sort
+    if(popular!=="Liên Quan"){
+        if(popular=="Mới Nhất"){
+            sort="numberical"
+        }else{
+            sort="sold"
+        }
+    }
+    
+    
     const rgx = (pattern) => new RegExp(`.*${pattern}.*`);
+
+    const findProperties={};
+    if(keyword&&details==="false"){
+        findProperties.title={ $regex: rgx(keyword) , $options: 'si' }
+    }
+    console.log(findProperties.hasOwnProperty("title"));
     
-    
-    const   products=details==="false"? await  Product.find({title:{ $regex: rgx(keyword) , $options: 'si' }}).lean().exec():
-            await Product.find({}).lean().exec();
+    const   products=await Product.find({...findProperties}).sort({[sort]:-1}).lean().exec();
     
     
     
@@ -35,23 +58,36 @@ const searchProduct = async (req, res) => {
     const productWithUser= await Promise.all(products?.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
-        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).lean().exec();
+        const detailsProduct= await DetailProducts.findOne({productId:product._id}).lean().exec();
+        const deliver=await Delivery.findOne({details_productId:detailsProduct._id}).lean().exec();
+        
         return {...product,
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0
+            rating:rate.rating?rate.rating:0,
+            comefrom:detailsProduct.comefrom,
+            delivery:deliver?.more_details
         }
 
     }))
-    
-    if(details==="false") {
-        return res.status(200).json({products:productWithUser,history:{keyword,details}})
-    }else {
-        const result =productWithUser.filter(product =>{
+    if(price!=="none"){
+        if(price==="increase"){
+            productWithUser.sort((a,b) =>a.price*(1-a.sale_off) - b.price*(1-b.sale_off))
+        }else{
+            productWithUser.sort((a,b) =>b.price*(1-b.sale_off) - a.price*(1-a.sale_off))
+        }
+    }
+    if(details==="false"){
+        res.status(200).json({products:productWithUser,
+            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher}});
+    }else{
+        let term=productWithUser.filter(product=>{
             return product.details===keyword
-        })
-        return res.status(200).json({products:result,history:{keyword,details}})
+        });
+        res.status(200).json({products:term,
+            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher}});
     }
     
 }
@@ -74,12 +110,14 @@ const getSearchProducts = async (req, res) => {
     const productWithUser= await Promise.all(products.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
-        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).lean().exec();
+        const detailsProduct= await DetailProducts.findOne({productId:product._id}).lean().exec();
         return {...product,
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0
+            rating:rate.rating?rate.rating:0,
+            comefrom:detailsProduct.comefrom
         }
 
     }))
@@ -113,12 +151,14 @@ const getAllProducts = async (req, res,next) => {
     const productWithUser= await Promise.all(products.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
-        const rate= await Rating.findOne({productId:product._id}).select("-usersRating").lean().exec();
+        const rate= await Rating.findOne({productId:product._id}).lean().exec();
+        const detailsProduct= await DetailProducts.findOne({productId:product._id}).lean().exec();
         return {...product,
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0
+            rating:rate.rating?rate.rating:0,
+            comefrom:detailsProduct.comefrom
         }
 
     }))
@@ -161,11 +201,13 @@ const createProduct = async (req, res)  => {
     //check for duplicate
     
     const duplicate =await Product.findOne({title:title}).collation({ locale: 'en', strength: 2 }).lean().exec();
-    
+    const find_user= await Users.findById({_id:user}).lean().exec();
     if(duplicate){
-        return res.status(409).json({message:"Product duplicate"})   ;     
+        return res.status(409).json({message:"Product duplicate"});     
     }
-
+    if(!find_user){
+        return res.status(404).json({message:"Not Found User"})
+    }
     const product = await Product.create({...req.body});
     product.save(async(err) => {
         if(err) return res.status(err.status).json({message:err})
@@ -187,7 +229,9 @@ const createProduct = async (req, res)  => {
 // @route post /product/:id/update
 // @access Private
 const updateProduct = async (req, res) => {
-    const {id,user,title}=req.body;
+    const id=req.params.id
+    const {user,title,...rest} = req.body
+    
     
 
     
@@ -199,12 +243,15 @@ const updateProduct = async (req, res) => {
     //confirm note exists to update product
 
     const product = await Product.findById(id).exec();
+    const find_user = await Users.findById(user).exec();
     
     if(!product) {
-        return res.status(400).json({message: 'Product not found'});
+        return res.status(404).json({message: 'Product not found'});
     };
     //check for duplicate title
-
+    if(!find_user){
+        return res.status(404).json({message: 'User not found'})
+    }
     const duplicate= await Product.findOne({title:title}).collation({ locale: 'en', strength: 2 }).lean().exec();
     
     //Allow renaming of the original title
@@ -213,7 +260,7 @@ const updateProduct = async (req, res) => {
         return res.status(409).json({message:"Duplicate title"});
     }
 
-    await product.updateOne(req.body);
+    await product.updateOne({...rest,user_update:user,title:title});
 
     const result = await product.save()
 
@@ -389,9 +436,11 @@ const testProduct = async(req, res) => {
     res.status(404).json({message:"Don't Pass"})
 }
 const updateMany=async (req, res) => {
-    const {deliver}=req.body;
+    const {whole_sale} =req.body;
 
-    const results=await Product.updateManyWithDeleted({deliver:deliver});
+    const results=await Product.updateManyWithDeleted({whole_sale:whole_sale}).exec();
+    
+    console.log(results)
     if(!results) {
         res.status(404).json({message:"Updated Not Successfully"})
     }

@@ -44,7 +44,7 @@ const upload = multer({
 
 router.get("/",productController.getAllProducts);
 router.get("/_search",productController.getSearchProducts);
-router.get("/hot/search",productController.searchProduct);
+router.post("/hot/search",productController.searchProduct);
 router.get("/deleted/product",productController.getDeletedProduct);
 
 
