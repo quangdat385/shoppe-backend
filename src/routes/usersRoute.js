@@ -4,7 +4,7 @@ const verifyJWT=require('../middleware/verifyJWT')
 
 
 const router = express.Router();
-// router.use(verifyJWT);
+router.use(verifyJWT);
 
 router.get('/',usersController.show);
 

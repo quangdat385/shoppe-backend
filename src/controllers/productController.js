@@ -10,10 +10,11 @@ const loadfile = require('../middleware/loadFilemiddleware');
 const DetailProducts=require('../models/ProductDetails');
 const Catalory=require('../models/CataLoProduct');
 const Vourcher=require('../models/Vourcher');
-
+const countProduct=require("../middleware/vourcherCounting")
 
 
 const collectionProduct= require('../middleware/colectionProduct');
+const { Console } = require('console');
 
 
 // @desc Get all product 
@@ -23,8 +24,8 @@ const searchProduct = async (req, res) => {
     const {keyword,details} = req.query;
     
     
-    const {more, menu,place,deliver,rangePrice,voucher}=req.body;
-    console.log(req.body)
+    const {more, menu,place,deliver,rangePrice,voucher,rate}=req.body;
+    
     const {popular,price}=more;
     let sort
     if(popular!=="Liên Quan"){
@@ -42,6 +43,7 @@ const searchProduct = async (req, res) => {
     if(keyword&&details==="false"){
         findProperties.title={ $regex: rgx(keyword) , $options: 'si' }
     }
+    
     console.log(findProperties.hasOwnProperty("title"));
     
     const   products=await Product.find({...findProperties}).sort({[sort]:-1}).lean().exec();
@@ -54,7 +56,9 @@ const searchProduct = async (req, res) => {
 
     }
 
-    console.log(products.length);
+    const listProductId = await countProduct(voucher);
+    console.log(listProductId);
+    
     const productWithUser= await Promise.all(products?.map(async(product) => {
         const user = await Users.findById(product.user).lean().exec();
         const cata= await Catalory.findById(product.cataloryId).lean().exec();
@@ -66,12 +70,13 @@ const searchProduct = async (req, res) => {
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0,
+            rating:rate.rating?rate.rating:1,
             comefrom:detailsProduct.comefrom,
             delivery:deliver?.more_details
         }
 
     }))
+    
     if(price!=="none"){
         if(price==="increase"){
             productWithUser.sort((a,b) =>a.price*(1-a.sale_off) - b.price*(1-b.sale_off))
@@ -79,15 +84,138 @@ const searchProduct = async (req, res) => {
             productWithUser.sort((a,b) =>b.price*(1-b.sale_off) - a.price*(1-a.sale_off))
         }
     }
+
+    
     if(details==="false"){
-        res.status(200).json({products:productWithUser,
-            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher}});
+        let result;
+
+        let  term=productWithUser;
+        if (menu&&menu.length>0){
+            console.log(menu)
+            term.push(...productWithUser.filter(product=>{
+                return menu.includes(product.details)
+            }))
+        }
+        result=term;
+        if(place&&place.length>0){
+            result= term.filter(item=>{
+                return place.includes(item.comefrom)
+            })
+            
+        }
+        if(deliver&&deliver.length>0){
+            result= result.filter(item=>{
+                return deliver.includes(item.delivery)
+            })
+        }
+        if(rangePrice){
+            result=result.filter(item=>{
+                return (item.price*(1-item.sale_off)>=rangePrice.to&&
+                item.price*(1-item.sale_off)<=rangePrice.from
+                )
+            })
+        }
+        console.log("result :",result.length)
+        if(rate){
+            result=result.filter(item=>{
+                return item.rating>=rate
+            })
+        }
+        if(voucher&&voucher.length>0){
+            voucher.forEach(item=>{
+                if (item==="Hàng Có Sẵn"){
+                    result=result.filter(item=>{
+                        return item.quality>0
+                    })
+                };
+                if (item==="Đang Giảm Giá"){
+                    result=result.filter(item=>{
+                        return item.sale_off>0;
+                    })
+                };
+                if (item==="Mua giá bán buôn/ bán sỉ"){
+                    result=result.filter(item=>{
+                        return item.whole_sale===true;
+                    })
+                };
+                
+            })
+        }
+        if(listProductId.length>0){
+            result=result.filter(item=>{
+                return listProductId.includes(item._id)
+            })
+        }
+        res.status(200).json({products:Array.from(new Set(result)),
+            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher,rate}})
+        
     }else{
-        let term=productWithUser.filter(product=>{
-            return product.details===keyword
-        });
-        res.status(200).json({products:term,
-            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher}});
+        let result;
+
+        let  term=productWithUser.filter(product=>{
+            return product.details===keyword;
+        })
+
+        if (menu&&menu.length>0){
+            console.log(menu)
+            term.push(...productWithUser.filter(product=>{
+                return menu.includes(product.details)
+            }))
+        }
+        result=term;
+        if(place&&place.length>0){
+            result= term.filter(item=>{
+                return place.includes(item.comefrom)
+            })
+            
+        }
+        if(deliver&&deliver.length>0){
+            result= result.filter(item=>{
+                return deliver.includes(item.delivery)
+            })
+        }
+        if(rangePrice){
+            result=result.filter(item=>{
+                return (item.price*(1-item.sale_off)>=rangePrice.to&&
+                item.price*(1-item.sale_off)<=rangePrice.from
+                )
+            })
+        }
+        if(rate){
+            result=result.filter(item=>{
+                return item.rating>=rate
+            })
+        }
+        console.log("result :",result.length)
+        if(voucher&&voucher.length>0){
+            voucher.forEach(item=>{
+                if (item==="Hàng Có Sẵn"){
+                    result=result.filter(item=>{
+                        return item.quality>0
+                    })
+                };
+                if (item==="Đang Giảm Giá"){
+                    result=result.filter(item=>{
+                        return item.sale_off>0;
+                    })
+                };
+                if (item==="Mua giá bán buôn/ bán sỉ"){
+                    result=result.filter(item=>{
+                        return item.whole_sale===true;
+                    })
+                };
+                
+            })
+        }
+        if(listProductId.length>0){
+            
+            result=result.filter(item=>{
+                
+                return listProductId.includes(item._id.toString())
+            })
+        }
+        res.status(200).json({products:Array.from(new Set(result)),
+            history:{keyword,details,more,menu,place,rangePrice,deliver,voucher,rate}});
     }
     
 }
@@ -116,7 +244,7 @@ const getSearchProducts = async (req, res) => {
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0,
+            rating:rate.rating?rate.rating:1,
             comefrom:detailsProduct.comefrom
         }
 
@@ -157,7 +285,8 @@ const getAllProducts = async (req, res,next) => {
             user_name:user.user_name,
             type_of_product:cata?.type_of_product,
             details:cata?.details,
-            rating:rate.rating?rate.rating:0,
+            rating:rate.rating?rate.rating:1,
+            total_rate:rate.totalStar,
             comefrom:detailsProduct.comefrom
         }
 
@@ -286,6 +415,7 @@ const likesProduct= async (req, res) => {
     if(!product||!users) {
         return res.status(400).json({message: 'Not Found Product Or User'});
     };
+    console.log(users)
 
     product.save(async err => {
         if(err) {
@@ -304,6 +434,7 @@ const likesProduct= async (req, res) => {
             if(likes<0){
                 let user_like= users.like_product;
                 user_like.splice(isUpdateUser,1);
+                console.log(user_like)
                 users.like_product=user_like;
                 await users.save()
                 product.likes-=1;
