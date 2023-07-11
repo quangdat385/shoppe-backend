@@ -71,6 +71,7 @@ const searchProduct = async (req, res) => {
             type_of_product:cata?.type_of_product,
             details:cata?.details,
             rating:rate.rating?rate.rating:1,
+            rate_details:[rate.oneStar,rate.twoStar,rate.threeStar,rate.fourStar,rate.fiveStar],
             comefrom:detailsProduct.comefrom,
             delivery:deliver?.more_details
         }
@@ -286,6 +287,7 @@ const getAllProducts = async (req, res,next) => {
             type_of_product:cata?.type_of_product,
             details:cata?.details,
             rating:rate.rating?rate.rating:1,
+            rate_details:[rate.oneStar,rate.twoStar,rate.threeStar,rate.fourStar,rate.fiveStar],
             total_rate:rate.totalStar,
             comefrom:detailsProduct.comefrom
         }
@@ -427,7 +429,8 @@ const likesProduct= async (req, res) => {
                 users.like_product.push(product._id);
                 await users.save();
                 product.likes+=1;
-                product.save();
+                await product.save();
+                
             }
             
         }else {
@@ -438,11 +441,12 @@ const likesProduct= async (req, res) => {
                 users.like_product=user_like;
                 await users.save()
                 product.likes-=1;
-                product.save();
+                await product.save();
+                
             }
         }
-
-        return res.status(200).json({message: 'update likes successfully'})
+        res.status(200).json("Product Update Successfully")
+        
     })
 
 

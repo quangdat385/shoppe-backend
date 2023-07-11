@@ -72,3 +72,7 @@
 01072023	10:36:28	ffc5bfb8-867e-4f87-8b1a-6f3ed71ba062	ReferenceError: _id is not defined	POST	/api/product/hot/search?keyword=Qu%E1%BA%A7n%20D%C3%A0i&details=true	http://localhost:3000
 01072023	10:37:04	e0768d93-dda1-4e25-bb7d-d93638485783	ReferenceError: id is not defined	POST	/api/product/hot/search?keyword=Qu%E1%BA%A7n%20D%C3%A0i&details=true	http://localhost:3000
 01072023	10:37:04	45529d59-d4c8-4798-bc05-d89ab4583ac6	ReferenceError: id is not defined	POST	/api/product/hot/search?keyword=Qu%E1%BA%A7n%20D%C3%A0i&details=true	http://localhost:3000
+10072023	11:50:57	4e268c28-a7f0-4e01-bcd4-e1aeef720796	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
+10072023	11:50:58	c43164d7-646e-4cac-822f-b44422495127	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
+10072023	11:50:59	9dae6d40-352c-4176-ace8-70ec2bef0a73	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
+10072023	11:51:59	508ef816-c724-43ac-a114-cdfe205589ae	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000

@@ -19,7 +19,7 @@ const UserSchema=new Schema({
     isVerified:{type:Boolean,default:false},
     full_name:{type:String,default:""},
     name_shop:{type:String},
-    like_product:{type:[mongoose.Schema.Types.ObjectId]}
+    like_product:{type:[mongoose.Schema.Types.ObjectId],default:[]}
 },{
     _id:false,
     timestamps:true,

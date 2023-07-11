@@ -37,6 +37,7 @@ class RatingController {
     }
     async update(req, res){
         const {productId,userId,rate}=req.body;
+        console.log(productId,userId,rate)
         if (!productId||!userId||!rate){
             return res.status(400).json({message:"All field are required"});
 
@@ -44,7 +45,7 @@ class RatingController {
         
         const product = await Product.findOneWithDeleted({_id:productId}).exec();
         const user = await Users.findWithDeleted({_id:Number(userId)}).exec();
-        console.log(product,user)
+        
         if(!product||!user){
             return res.status(404).json({message: "Not Found User Or Product"});
         }
@@ -54,17 +55,14 @@ class RatingController {
             res.status(404).json({message:"Not Found Rating Record"});
         };
         result.then((result) => {
-            let indexSlice=[];
-            result.usersRating.forEach((user,index) => {
-                if(user.userId===Number(userId)){
-                    indexSlice.push({userId:user.userId,index:index})
-                }
-            });
+            
+            const term=  result.usersRating.filter(item=>{
+                console.log(item)
+                return item.userId!==userId
+            })
+            console.log("term :",term);
 
-            if(indexSlice.length>0){
-                result.usersRating.splice(indexSlice[0].index,1)
-            };
-            result.usersRating.push({userId:Number(userId),rate:Number(rate)});
+            result.usersRating=[...term,{userId:userId,rate:rate}];
             result.totalStar=result.usersRating.length;
             const rates=result.usersRating;
             
@@ -78,7 +76,7 @@ class RatingController {
             result.threeStar=three;
             result.fourStar=four;
             result.fiveStar=five;
-            result.rating=rating;
+            result.rating=rating.toFixed(1);
             result.save();
             res.status(200).json({message:"update successfully"});
         }).catch(()=> {res.status(404).json({message:"Don't update successfully"})});
