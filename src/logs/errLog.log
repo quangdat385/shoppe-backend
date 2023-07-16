@@ -76,3 +76,44 @@
 10072023	11:50:58	c43164d7-646e-4cac-822f-b44422495127	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
 10072023	11:50:59	9dae6d40-352c-4176-ace8-70ec2bef0a73	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
 10072023	11:51:59	508ef816-c724-43ac-a114-cdfe205589ae	RangeError: toString() radix argument must be between 2 and 36	GET	/api/product?q=false	http://localhost:3000
+14072023	09:21:27	09393d20-df3b-4dc6-b92f-a951048492d4	TypeError: Cannot read properties of undefined (reading 'filename')	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:21:37	69470302-401e-4333-8ae4-39685b50d91b	TypeError: Cannot read properties of undefined (reading 'filename')	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:50:43	249fbe36-a82e-440e-8822-8f94b07e3965	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	09:51:35	2350df66-ac13-420c-8a1c-669bc02a2ca5	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	09:53:01	ecdd116e-5dec-4e90-8dc3-b0adbcc9e820	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	09:55:19	a3644679-9066-4b1a-b9b8-e6ebe78ab4a1	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:55:54	f8a60c94-a3dc-4896-abe1-9a5c39bf9fbf	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:56:19	e79d614b-049e-4467-9ba2-fa1628c4355d	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:56:58	e09f7ddc-cfc0-4e4e-8940-6ae7dc586f4b	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:58:26	6794fbf9-df39-4d68-86a8-0ef84868ef38	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	09:59:22	4838085e-43d7-425e-9275-bccf6df50279	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:00:13	311dcdc8-d4ce-4013-9cc6-b89c4229af00	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:00:30	2c4175dd-6c2c-4f63-91c4-67597703ead9	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:01:34	2c052a55-02b4-4eb4-90eb-d46378d4001c	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:01:38	f1ae3801-3b0f-4ad5-a692-45931a1a5fc1	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:02:27	8bfe1ed3-f7cb-440a-872c-e63a1d4bb678	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:05:18	b8499130-75b5-4e9e-a4b6-93a20ed1442b	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:05:44	cbb03afc-6e60-4b6f-abd5-544c14a8cc57	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:08:15	3779f016-3df0-4e05-9b6e-a197075f5368	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:10:26	15e9dde7-6756-4223-bf03-e7fc89f7eab6	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:12:36	acbaad42-81a9-41de-8a3f-cc0cc5c6114a	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:26:52	9fe43074-86fc-4573-8f7d-2c73029db78a	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:34:22	78860107-567f-4b24-bf19-7223fa718ed7	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:36:10	411fd5ab-47d6-4cb3-bed9-4856d3438088	Error: Multipart: Boundary not found	PATCH	/api/user/undefined/update	http://localhost:3000
+14072023	10:38:00	5f5023c0-24e9-4888-902d-5ec06ddf2a6e	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:39:41	9e19fcd2-625c-4846-acb6-0a54ceb7bb3b	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:42:17	e4967f7f-7b60-40d5-bd94-e865a73a5a47	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:43:55	53a547b0-0312-495e-b6a1-ea391734df8b	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:43:57	2c112a9b-5cc1-43f6-8ec0-98da7311be96	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:45:13	0f9f7e12-a4f7-4f46-ac4e-382fe5a5e1fd	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:46:18	ca0afcdd-9f09-46d1-9bdc-e72868c6ab91	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	10:47:23	8de053b0-1d91-46a0-9491-e9a3cdf030cd	Error: Multipart: Boundary not found	PATCH	/api/user/14/update	http://localhost:3000
+14072023	11:00:59	d4396962-1863-4f6a-8655-50be3678e596	ReferenceError: c is not defined	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:53:05	99e17840-b73a-4724-9419-f31d94d9382b	Error: ENOENT: no such file or directory, unlink './src/public/img/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:54:19	f96ab3c1-d39c-4572-a6dd-4d10a1b24ff7	Error: ENOENT: no such file or directory, unlink './src/public/img/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:54:30	23f02539-12eb-4a6e-a772-49110013fd3c	Error: ENOENT: no such file or directory, unlink './src/public/img/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:55:48	2c8bd9c0-fa98-4371-aae1-4a645dab7ed9	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:55:58	9c23b97d-3732-49d7-8d50-dab1a1d70d69	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	11:58:43	1a0206b7-9d0c-4e02-b209-57a733168a51	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	12:08:54	3974860e-72d0-408c-9746-bd7a83106ece	ReferenceError: path is not defined	PATCH	/api/user/14/update/avatar	http://localhost:3000
+14072023	12:09:50	1ca083ea-8fbd-4256-b4a3-2baddb15f00b	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000

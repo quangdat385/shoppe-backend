@@ -7,7 +7,7 @@ const Schema=mongoose.Schema;
 const UserSchema=new Schema({
     _id:{type :Number},
     phone_number:{type :String,trim :true,minlength:10},
-    avatar:{type :String,default:""},
+    avatar:{type :[String],default:[]},
     user_name:{type :String,trim:true,required:true},
     facebook:{type :String,default:"",},
     google:{type :String,default:""},

@@ -1,7 +1,8 @@
 const Users= require('../models/Users')
 const Product = require('../models/Product');
 const bcrypt=require('bcrypt')
-
+const fs = require('fs');
+const path = require('path');
 
 
 
@@ -115,9 +116,9 @@ class UsersController {
     }
     //patch user/:id/update
     async updateUser(req, res, next){
-        
+        console.log(req.file)
         const {id,phone_number,email,user_name,full_name,gender,birthday,name_shop,avatar} = req.body;
-        console.log(id,phone_number,req.params)
+        console.log(id,phone_number,req.params,email)
         if(!id||!phone_number) {
             return res.status(400).json({message:'All fields are required'})
         }
@@ -138,6 +139,40 @@ class UsersController {
             return res.status(401).json({message:"Duplicate email"})
         };
         await user.updateOne(req.body);
+        const result =await user.save()
+        if(result){
+            res.status(200).json({message:"user updated successfully"})
+        }else{
+            res.status(404).json({message:"Error updating"})
+        }
+    }
+    async updateAvatar(req, res, next){
+        if (req.fileValidationError) {
+
+            return res.send(req.fileValidationError);
+        } else if (!req.file) {
+            return res.send('Please select an image to upload');
+        }
+        console.log(req.file)
+        const {id} = req.params;
+        
+        if(!id) {
+            return res.status(400).json({message:'All fields are required'})
+        }
+
+        const user =await Users.findById(id).select('-password');
+
+        if(!user){
+            res.status(404).json({message:"Unauthorized"})
+        };
+        
+        if (fs.existsSync(path.join(__dirname, '..', `public/img/avatar/${user.avatar[0]}`))) {
+            fs.unlinkSync(user.avatar[1])
+        }            
+
+        const avatar= [req.file.filename,
+        `./src/public/img/avatar/${req.file.filename}`]
+        user.avatar=avatar;
         const result =await user.save()
         if(result){
             res.status(200).json({message:"user updated successfully"})
