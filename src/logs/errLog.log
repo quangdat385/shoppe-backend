@@ -117,3 +117,5 @@
 14072023	11:58:43	1a0206b7-9d0c-4e02-b209-57a733168a51	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
 14072023	12:08:54	3974860e-72d0-408c-9746-bd7a83106ece	ReferenceError: path is not defined	PATCH	/api/user/14/update/avatar	http://localhost:3000
 14072023	12:09:50	1ca083ea-8fbd-4256-b4a3-2baddb15f00b	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
+18072023	08:43:32	81d99cad-594f-44b2-801f-2b80207c2a4b	Error: Cannot set headers after they are sent to the client	PATCH	/api/user/undefined/update/phone	http://localhost:3000
+18072023	08:44:23	9859debc-a523-496d-b261-357a0d38682c	Error: Cannot set headers after they are sent to the client	PATCH	/api/user/undefined/update/phone	http://localhost:3000

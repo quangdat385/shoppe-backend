@@ -54,8 +54,12 @@ router.post('/create',usersController.create);
 router.patch('/:id/update',usersController.updateUser);
 router.patch('/:id/update/avatar',upload.single("avatar"),usersController.updateAvatar);
 
+router.patch('/:id/update/phone',usersController.updatePhoneNumber);
+router.patch('/:id/update/email',usersController.updateEmail);
 
 router.patch('/update',usersController.updateManager);
+
+
 
 
 router.delete('/:id/soft/delete',usersController.softDelete);

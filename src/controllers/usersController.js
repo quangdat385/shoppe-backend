@@ -114,29 +114,23 @@ class UsersController {
         }
 
     }
-    //patch user/:id/update
-    async updateUser(req, res, next){
-        console.log(req.file)
-        const {id,phone_number,email,user_name,full_name,gender,birthday,name_shop,avatar} = req.body;
-        console.log(id,phone_number,req.params,email)
-        if(!id||!phone_number) {
-            return res.status(400).json({message:'All fields are required'})
+    //check phone_number
+    async updatePhoneNumber(req, res){
+        const {id, phone_number} = req.body;
+        if(!id||!phone_number){
+            res.status(400).json({message:"All fields are required"})
         }
 
-        const dup_email=email?await Users.findOne({email}):null;
         const dup_phone=await Users.findOne({phone_number});
 
         const user =await Users.findById(id).select('-password');
 
         if(!user){
-            res.status(404).json({message:"Unauthorized"})
+            res.status(401).json({message:"Unauthorized"})
         };
         
         if (dup_phone&&dup_phone._id!==user._id){
-            return res.status(401).json({message:"Duplicate phone"})
-        };
-        if (dup_email&&dup_email._id!==user._id){
-            return res.status(401).json({message:"Duplicate email"})
+            return res.status(403).json({message:"Duplicate phone"})
         };
         await user.updateOne(req.body);
         const result =await user.save()
@@ -145,6 +139,69 @@ class UsersController {
         }else{
             res.status(404).json({message:"Error updating"})
         }
+    }
+    //update email
+    async updateEmail(req, res){
+        const {id, email} = req.body;
+        if(!id||!email){
+            res.status(400).json({message:"All fields are required"})
+        }
+
+        const dup_mail=await Users.findOne({email});
+
+        const user =await Users.findById(id).select('-password');
+
+        if(!user){
+            res.status(401).json({message:"Unauthorized"})
+        };
+        
+        if (dup_mail&&dup_mail._id!==user._id){
+            return res.status(403).json({message:"Duplicate email"})
+        };
+        await user.updateOne(req.body);
+        const result =await user.save()
+        if(result){
+            res.status(200).json({message:"user updated successfully"})
+        }else{
+            res.status(404).json({message:"Error updating"})
+        }
+    }
+    //patch user/:id/update
+    async updateUser(req, res){
+        console.log(req.file)
+        const {id,user_name} = req.body;
+        
+        if(!id) {
+            return res.status(400).json({message:'All fields are required'})
+        }
+        let userName=null;
+        if(user_name){
+            userName=await Users.findOne({user_name});
+        }
+        
+        
+
+        const user =await Users.findById(id).select('-password');
+
+        if(!user){
+            res.status(401).json({message:"Unauthorized"})
+        };
+        
+        if (userName&&userName._id!==user._id){
+            return res.status(403).json({message:"Duplicate user_name"});
+        };
+        
+        await user.updateOne({...req.body});
+        user.save(async (err,user)=>{
+            if(err){
+                res.status(404).json({message:"Error updating"});
+            }
+            if(userName!==null){
+                user.isUserName=true
+            }
+            await user.save();
+            res.status(200).json({message:"user updated successfully"});
+        })
     }
     async updateAvatar(req, res, next){
         if (req.fileValidationError) {
