@@ -119,3 +119,34 @@
 14072023	12:09:50	1ca083ea-8fbd-4256-b4a3-2baddb15f00b	Error: ENOENT: no such file or directory, unlink './src/public/img/avatar/imgProductavatar1689310285643'	PATCH	/api/user/14/update/avatar	http://localhost:3000
 18072023	08:43:32	81d99cad-594f-44b2-801f-2b80207c2a4b	Error: Cannot set headers after they are sent to the client	PATCH	/api/user/undefined/update/phone	http://localhost:3000
 18072023	08:44:23	9859debc-a523-496d-b261-357a0d38682c	Error: Cannot set headers after they are sent to the client	PATCH	/api/user/undefined/update/phone	http://localhost:3000
+24072023	10:21:19	4edc45a7-abaa-489e-b1e7-43aec0009323	CastError: Cast to Number failed for value "64bde5d4f3bcbef4623bc524" (type string) at path "_id" for model "users"	PATCH	/api/user/14/update/address	undefined
+24072023	10:25:55	dc60db94-0a40-4df2-a093-6aa6b547d5e1	TypeError: user.address.findById is not a function	PATCH	/api/user/14/update/address	undefined
+24072023	10:30:58	cdd379fc-9379-408f-afb4-6204b8a00746	TypeError: #<Object> is not a function	PATCH	/api/user/14/update/address	undefined
+24072023	12:22:52	c39212fe-b61f-4298-b46c-3b6e0be4cc56	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+25072023	09:17:49	7b7d7328-f624-4cdd-a7d9-22692036b015	ValidationError: users validation failed: address: Cast to embedded failed for value "2" (type number) at path "address" because of "ObjectParameterError"	PATCH	/api/user/14/update/address	undefined
+25072023	09:53:42	f8839094-9869-40c4-ac6d-a63858c5716c	TypeError: this.constructor.updateOne is not a function	PATCH	/api/user/14/update/address	undefined
+25072023	09:55:06	17a509ef-5a77-4e5f-8f4a-b7b55dc758ee	TypeError: Assignment to constant variable.	PATCH	/api/user/14/update/address	undefined
+25072023	09:55:34	fcdad832-8cf8-482b-b0fe-5b4da6e68832	TypeError: result.save is not a function	PATCH	/api/user/14/update/address	undefined
+25072023	10:57:29	08a908b4-6450-4c15-8a6b-0ee8f4cde226	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+25072023	11:03:01	36da3654-44ce-4051-a5d1-aed88e308486	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+25072023	11:04:39	ea70cfd0-4cbb-47da-ad16-01fb97bd699e	TypeError: this.constructor.updateOne is not a function	PATCH	/api/user/14/update/address	undefined
+26072023	08:25:41	0c876548-34c1-448e-861c-8be6b47c96c6	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+26072023	08:26:38	7ff99e9f-55e9-4136-8b1f-f815c1365014	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+26072023	08:30:19	d0947897-d59b-43c8-bd3f-f7932d7970a4	TypeError: Found non-callable @@iterator	PATCH	/api/user/14/update/address	undefined
+26072023	08:32:13	0def75dd-3588-47f9-845b-a00312521a24	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+26072023	08:35:42	162b02dc-7513-4fd7-bf0c-ebf1a499fa88	TypeError: user.address.id(...).addToSet is not a function	PATCH	/api/user/14/update/address	undefined
+26072023	08:36:37	2b570632-34b7-4ea6-b68f-8cdcc595280d	ReferenceError: Invalid left-hand side in assignment	PATCH	/api/user/14/update/address	undefined
+26072023	08:55:06	cb1573b3-64eb-4f53-ac88-c1ec0a111ff8	ReferenceError: result is not defined	PATCH	/api/user/14/update/address	undefined
+26072023	08:55:33	fedb3813-2306-4951-a0f2-f5ce5c9c5fd5	TypeError: address.map is not a function	PATCH	/api/user/14/update/address	undefined
+26072023	08:58:08	5db35524-1dc3-437c-861e-42b4f30ff622	TypeError: Cannot read properties of undefined (reading 'toString')	PATCH	/api/user/14/update/address	undefined
+26072023	09:11:01	d00a9e0e-6b6f-4ad6-a1df-3a9921f1bb40	SyntaxError: Unexpected token / in JSON at position 21	PATCH	/api/user/14/addAdress	undefined
+26072023	09:18:28	704b02e7-1d61-41de-9ed6-ee256f115e68	ReferenceError: User is not defined	PATCH	/api/user/15/addAddress	undefined
+26072023	09:18:38	8cdd182b-bdce-4475-a736-427ee2942844	ObjectParameterError: Parameter "filter" to findOne() must be an object, got 15	PATCH	/api/user/15/addAddress	undefined
+26072023	10:10:04	2ce77cb5-5070-41e8-9df4-e587d4937071	TypeError: user.address.id(...).deleteOne is not a function	PATCH	/api/user/15/remove/address	http://localhost:3000
+26072023	10:10:52	17085b8c-6089-4450-8898-ffd451e49e9f	TypeError: user.address.id(...).deleteOne is not a function	PATCH	/api/user/15/remove/address	http://localhost:3000
+26072023	10:12:10	298b41bf-ee79-467d-a52d-9dae023000f5	TypeError: user.address.id(...).deleteOne is not a function	PATCH	/api/user/15/remove/address	http://localhost:3000
+26072023	10:15:26	22b73223-890c-4ea5-9307-f7ffbee023fa	TypeError: user.address.id(...).deleteOne is not a function	PATCH	/api/user/15/remove/address	http://localhost:3000
+26072023	10:48:56	891bb8c3-7a76-4630-9f8d-e61838b88ae6	ValidationError: users validation failed: address.0._id: Cast to ObjectId failed for value "15" (type number) at path "_id" because of "BSONTypeError"	PATCH	/api/user/15/remove/address	http://localhost:3000
+12082023	15:54:00	4559bcfb-ab2a-487e-8481-9c654a97150c	TypeError: Cannot read properties of null (reading 'rating')	GET	/api/product	undefined
+12082023	16:00:25	8372e6e4-0b0a-4ea8-abe1-ef0b03e6e9f0	TypeError: Cannot read properties of null (reading 'rating')	GET	/api/product	undefined
+12082023	16:42:54	c31ac527-c458-41d6-99e5-43df61cb967f	TypeError: catalory.save is not a function	GET	/api/catalo	undefined

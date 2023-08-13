@@ -3,6 +3,8 @@ const Product = require('../models/Product');
 const bcrypt=require('bcrypt')
 const fs = require('fs');
 const path = require('path');
+const { error } = require('console');
+const mongoose = require('mongoose');
 
 
 
@@ -166,6 +168,92 @@ class UsersController {
             res.status(404).json({message:"Error updating"})
         }
     }
+    //remove address
+    async removeAddress(req, res) {
+        const {id,addressId}=req.body;
+
+        if(!id||!addressId) {
+            return res.status(400).json({message:"All fields are required"});
+        }
+
+        const user = await Users.findById(id).select('-password');
+
+        if(!user) {
+            res.status(401).json({message:"Unauthorized"})
+        }
+
+        
+        user.address.pull(addressId);
+        await user.save();
+        res.status(200).json({message:"deleted Address successfully"})
+    }
+    //create address
+    async addAddress(req, res) {
+        const {id,address}=req.body;
+
+        if(!id||!address) {
+            return res.status(400).json({message:"All fields are required"});
+        }
+
+        const user = await Users.findById(id).select('-password');
+
+        if(!user) {
+            res.status(401).json({message:"Unauthorized"});
+        }
+        user.address.push({...address})
+        
+        
+        await user.save(async err=>{
+            if (err){
+                res.status(404).json({message:err.message})
+            }
+            if (user.address[user.address.length-1].deFault=true) {
+                let term=user.address[user.address.length-1]._id
+                user.address.map(item=>{
+                    if(item._id===term){
+                        return item;
+                    }
+                    item.deFault=false;
+                    return item
+                })
+            }
+            await user.save()
+            res.status(200).json({message:"Added Address successfully"});
+
+        });
+        
+    }
+    //update address 
+    async updateAddress(req, res) {
+        const {id,addressId,address} =req.body;
+        if(!id&&!addressId) {
+            return res.status(400).json({message:'All fields are required'})
+        };
+        console.log(id,addressId);
+        const user =await Users.findById(id).select('-password');
+
+        if(!user){
+            res.status(401).json({message:"Unauthorized"});
+        };
+        
+        let result =user.address.map(item => {
+            if(item._id.toString()===addressId){
+                item={...item,...address}
+                return item
+            }
+            item.deFault=false
+            return item
+        })
+        user.address=result;
+        user.save(async(err)=>{
+            if(err){
+                res.status(404).json({message:error})
+            }
+            await user.save();
+            res.status(200).json({success:true});
+        });
+    }
+    
     //patch user/:id/update
     async updateUser(req, res){
         console.log(req.file)
@@ -183,14 +271,15 @@ class UsersController {
 
         const user =await Users.findById(id).select('-password');
 
+
+
         if(!user){
-            res.status(401).json({message:"Unauthorized"})
+            res.status(401).json({message:"Unauthorized"});
         };
         
         if (userName&&userName._id!==user._id){
             return res.status(403).json({message:"Duplicate user_name"});
         };
-        
         await user.updateOne({...req.body});
         user.save(async (err,user)=>{
             if(err){
@@ -238,10 +327,12 @@ class UsersController {
         }
     }
     //put user/:id/change/password
-    changePassworded(req, res, next){
-        Users.findByIdAndUpdate({_id:req.params.id},req.body)
+    async changePassworded(req, res, next){
+        const {password} = req.body
+        const hashedPwd= await bcrypt.hash(password,10)
+        Users.findByIdAndUpdate({_id:req.params.id},{password:hashedPwd})
             .then(()=>{res.status(200).json({message:"Password changed successfully"})})
-            .catch(next)
+            .catch(()=>res.status(500).json({message:"Error updating"}))
     }
     // delete /:id/soft/delete
     async softDelete(req, res){

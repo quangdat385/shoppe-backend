@@ -20,7 +20,12 @@ const UserSchema=new Schema({
     isVerified:{type:Boolean,default:false},
     full_name:{type:String,default:""},
     name_shop:{type:String},
-    like_product:{type:[mongoose.Schema.Types.ObjectId],default:[]}
+    like_product:{type:[mongoose.Schema.Types.ObjectId],default:[]},
+    address:{
+        type:[new Schema({typeAddress:String,fullName:String,phoneNumber:String,
+            deFault:Boolean,province:String,district:String,ward:String,details:String})],
+        default:[],
+    }
 },{
     _id:false,
     timestamps:true,

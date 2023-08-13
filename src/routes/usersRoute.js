@@ -52,6 +52,9 @@ router.post('/create',usersController.create);
 
 
 router.patch('/:id/update',usersController.updateUser);
+router.patch('/:id/addAddress',usersController.addAddress);
+router.patch('/:id/remove/address',usersController.removeAddress);
+router.patch('/:id/update/address',usersController.updateAddress);
 router.patch('/:id/update/avatar',upload.single("avatar"),usersController.updateAvatar);
 
 router.patch('/:id/update/phone',usersController.updatePhoneNumber);
