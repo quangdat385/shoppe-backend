@@ -1,6 +1,6 @@
-const express=require('express');
+const express = require('express');
 const usersController = require('../controllers/usersController')
-const verifyJWT=require('../middleware/verifyJWT')
+const verifyJWT = require('../middleware/verifyJWT')
 const multer = require("multer");
 const appRoot = require('app-root-path');
 const fs = require('fs');
@@ -9,72 +9,73 @@ const fsPromises = require('fs').promises;
 
 
 const router = express.Router();
-// router.use(verifyJWT);
+router.use(verifyJWT);
 
 const storage = multer.diskStorage({
-    destination: async (req, file, cb)=> {
-        if (!fs.existsSync(path.join(__dirname, '..', 'public/img/avatar'))) {
-            await fsPromises.mkdir(path.join(__dirname, '..', 'public/img/avatar'))
-        }
-        cb(null, appRoot + '/src/public/img/avatar');
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + Date.now());
-    },
-});
-const imageFilter = function(req, file, cb) {
-    
-    // Accept images only
-    if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|jfif)$/)) {
-        req.fileValidationError = 'Only image files are allowed!';
-        return cb(new Error('Only image files are allowed!'), false);
+  destination: async (req, file, cb) => {
+    if (!fs.existsSync(path.join(__dirname, '..', 'public/img/avatar'))) {
+      await fsPromises.mkdir(path.join(__dirname, '..', 'public/img/avatar'))
     }
-    cb(null, true);
-    
+    cb(null, appRoot + '/src/public/img/avatar');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + Date.now());
+  },
+});
+const imageFilter = function (req, file, cb) {
+
+  // Accept images only
+  if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|jfif)$/)) {
+    req.fileValidationError = 'Only image files are allowed!';
+    return cb(new Error('Only image files are allowed!'), false);
+  }
+  cb(null, true);
+
 };
 
 const upload = multer({
-    storage: storage,
-    fileFilter: imageFilter,
-    limits: { fileSize: 11000000 }
+  storage: storage,
+  fileFilter: imageFilter,
+  limits: { fileSize: 11000000 }
 });
 
 
 
 
-router.get('/',usersController.show);
+router.get('/', usersController.show);
+router.get('/:id', usersController.getUser);
 
 
-router.get('/show/delete',usersController.showDeleted);
+router.get('/show/delete', usersController.showDeleted);
 
 
-router.post('/create',usersController.create);
+router.post('/create', usersController.create);
 
 
-router.patch('/:id/update',usersController.updateUser);
-router.patch('/:id/addAddress',usersController.addAddress);
-router.patch('/:id/remove/address',usersController.removeAddress);
-router.patch('/:id/update/address',usersController.updateAddress);
-router.patch('/:id/update/avatar',upload.single("avatar"),usersController.updateAvatar);
+router.patch('/:id/update', usersController.updateUser);
+router.patch('/:id/addAddress', usersController.addAddress);
+router.patch('/:id/remove/address', usersController.removeAddress);
+router.patch('/:id/update/address', usersController.updateAddress);
+router.patch('/:id/update/avatar', upload.single("avatar"), usersController.updateAvatar);
 
-router.patch('/:id/update/phone',usersController.updatePhoneNumber);
-router.patch('/:id/update/email',usersController.updateEmail);
+router.patch('/:id/update/phone', usersController.updatePhoneNumber);
+router.patch('/:id/update/email', usersController.updateEmail);
 
-router.patch('/update',usersController.updateManager);
-
-
+router.patch('/update', usersController.updateManager);
 
 
-router.delete('/:id/soft/delete',usersController.softDelete);
 
 
-router.delete('/:id/delete',usersController.delete);
+router.delete('/:id/soft/delete', usersController.softDelete);
 
 
-router.patch('/:id/restore',usersController.restore);
+router.delete('/:id/delete', usersController.delete);
 
 
-router.put('/:id/change/password',usersController.changePassworded);
+router.patch('/:id/restore', usersController.restore);
+
+
+router.put('/:id/change/password', usersController.changePassworded);
 
 
 

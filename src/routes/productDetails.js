@@ -1,16 +1,16 @@
-const express=require('express');
+const express = require('express');
 
-const verifyJWT=require('../middleware/verifyJWT');
-const productdetailsController=require('../controllers/productDetailsController');
 
-const router=express.Router();
+const productdetailsController = require('../controllers/productDetailsController');
 
-// router.use(verifyJWT);
-router.get('/',productdetailsController.show );
-router.post('/',productdetailsController.create );
-router.patch('/:id/update',productdetailsController.update );
-router.patch('/update/many',productdetailsController.updateMany );
-router.delete('/:id/delete',productdetailsController.delete );
+const router = express.Router();
+
+
+router.get('/', productdetailsController.show);
+router.post('/', productdetailsController.create);
+router.patch('/:id/update', productdetailsController.update);
+router.patch('/update/many', productdetailsController.updateMany);
+router.delete('/:id/delete', productdetailsController.delete);
 
 
 

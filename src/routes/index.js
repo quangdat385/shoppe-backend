@@ -3,25 +3,25 @@ const cors = require('cors');
 const corsOptions = require('../config/corsOptions');
 
 
-function route(app){
+function route(app) {
     app.use(cors(corsOptions));
-    app.use('/api/usercart',require('./usercartsRoute'))
-    app.use('/api/product',require('./productsRoute'))
-    app.use('/api/user',require('./usersRoute'))
-    app.use('/api/auth',require('./authRoute'))
-    app.use('/api/catalo',require('./cataloProductRoute'))
-    app.use('/api/rating',require('./ratingRoute'))
-    app.use('/api/product/details',require('./productDetails'))
-    app.use('/api/delivery',require('./deliverRoute'))
-    app.use('/api/vourcher',require('./vourcherRoute'))
+    app.use('/api/usercart', require('./usercartsRoute'))
+    app.use('/api/product', require('./productsRoute'))
+    app.use('/api/users', require('./usersRoute'))
+    app.use('/api/auth', require('./authRoute'))
+    app.use('/api/catalo', require('./cataloProductRoute'))
+    app.use('/api/rating', require('./ratingRoute'))
+    app.use('/api/product/details', require('./productDetails'))
+    app.use('/api/delivery', require('./deliverRoute'))
+    app.use('/api/vourcher', require('./vourcherRoute'))
 
     app.use('/', require('./root'));
 
     app.all('*', (req, res) => {
-        
+
         res.status(404)
         if (req.accepts('html')) {
-            res.sendFile(path.join(__dirname,"..", 'views', '404.html'));
+            res.sendFile(path.join(__dirname, "..", 'views', '404.html'));
         } else if (req.accepts('json')) {
             res.json({ message: '404 Not Found' });
         } else {
@@ -29,9 +29,9 @@ function route(app){
         }
     });
 
-    
-    
+
+
 }
 
 
-module.exports =route;
+module.exports = route;

@@ -1,3 +1,6 @@
 {
-    "ext" : "js json css"
+    "watch": [
+        "src"
+    ],
+    "ext": ".js,.evn"
 }

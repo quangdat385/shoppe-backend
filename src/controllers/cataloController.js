@@ -10,14 +10,14 @@ class CataloProduct {
         Catalory.find({})
             .then((catalory) => {
                 if (catalory.length) {
-                    catalory.map(async (item) => {
-                        const products = await Products.find({ cataloryId: item._id }).exec();
-                        if (products.length > 0) {
-                            const productIds = products.map(product => product._id)
-                            item.listProduct = productIds
-                            await item.save()
-                        }
-                    })
+                    // catalory.map(async (item) => {
+                    //     const products = await Products.find({ cataloryId: item._id }).exec();
+                    //     if (products.length > 0) {
+                    //         const productIds = products.map(product => product._id)
+                    //         item.listProduct = productIds
+                    //         await item.save()
+                    //     }
+                    // })
 
                     res.status(200).json(catalory);
 
