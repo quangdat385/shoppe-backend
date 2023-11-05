@@ -1,6 +1,5 @@
 const allowedOrigins = [
   'https://datnguyenshop.onrender.com',
-
 ]
 
 
