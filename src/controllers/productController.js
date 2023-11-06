@@ -135,7 +135,7 @@ const searchProduct = async (req, res) => {
     const term = {
       ...product,
       details: product.detail,
-      rating: product.ratings.rating ? product.ratings.rating : 0,
+      rating: product.ratings.rating ? product.ratings.rating : 1,
       rate_details: [product.ratings.oneStar, product.ratings.twoStar, product.ratings.threeStar, product.ratings.fourStar, product.ratings.fiveStar],
       total_rate: product.ratings.totalStar,
     };
@@ -392,7 +392,7 @@ const getSearchProducts = async (req, res) => {
   };
 
   const results = products.map((product) => {
-    const term = { ...product, details: product.detail, rating: product.ratings.rating ? product.ratings.rating : 0 };
+    const term = { ...product, details: product.detail, rating: product.ratings.rating ? product.ratings.rating : 1 };
     term.ratings = {}
     return term
   });
@@ -489,7 +489,7 @@ const getAllProducts = async (req, res, next) => {
     const term = {
       ...product,
       details: product.detail,
-      rating: product.ratings.rating ? product.ratings.rating : 0,
+      rating: product.ratings.rating ? product.ratings.rating : 1,
       rate_details: [product.ratings.oneStar, product.ratings.twoStar, product.ratings.threeStar, product.ratings.fourStar, product.ratings.fiveStar],
       total_rate: product.ratings.totalStar,
     };
