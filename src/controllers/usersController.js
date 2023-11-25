@@ -36,7 +36,7 @@ class UsersController {
       })
       .catch(next)
   }
-  // get api/user/show/delete
+  // get api/users/show/delete
   showDeleted(req, res, next) {
     Users.findDeleted({}).select('-password').lean()
       .then(users => {
@@ -48,7 +48,7 @@ class UsersController {
       })
       .catch(next)
   }
-  //post api/user/create
+  //post api/users/create
   async create(req, res) {
     const { user_name, password, roles } = req.body;
     //confirm data;
@@ -81,7 +81,7 @@ class UsersController {
     }
 
   }
-  //patch user/update
+  //patch users/update
   async updateManager(req, res, next) {
     const { id, avatar, user_name, email, phone_number, birthday, gender, full_name, name_shop } = req.body;
     if (!id || !user_name) {
@@ -169,7 +169,7 @@ class UsersController {
     };
 
     if (dup_mail && dup_mail._id !== user._id) {
-      return res.status(403).json({ message: "Duplicate email" })
+      return res.status(401).json({ message: "Duplicate email" })
     };
     await user.updateOne(req.body);
     const result = await user.save()
@@ -182,6 +182,7 @@ class UsersController {
   //remove address
   async removeAddress(req, res) {
     const { id, addressId } = req.body;
+    console.log(req.body);
 
     if (!id || !addressId) {
       return res.status(400).json({ message: "All fields are required" });
@@ -267,9 +268,9 @@ class UsersController {
 
   //patch user/:id/update
   async updateUser(req, res) {
-    console.log(req.file)
-    const { id, user_name } = req.body;
 
+    const { id, user_name } = req.body;
+    console.log(id);
     if (!id) {
       return res.status(400).json({ message: 'All fields are required' })
     }

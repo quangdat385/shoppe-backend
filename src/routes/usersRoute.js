@@ -43,7 +43,7 @@ const upload = multer({
 
 
 router.get('/', usersController.show);
-router.get('/:id', usersController.getUser);
+router.get('/:id/profile', usersController.getUser);
 
 
 router.get('/show/delete', usersController.showDeleted);
